@@ -25,21 +25,23 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { Position, SocialMedia, HighlightConfig } from "@/types";
+import {
+  Position,
+  SocialMedia,
+  HighlightConfig,
+  TitleConfig,
+  SubtitleConfig,
+} from "@/types";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { fontFamily, fontWeight } from "@/lib/fonts";
 
 interface ControlPanelProps {
   backgroundImage: string;
   setBackgroundImage: (url: string) => void;
-  title: string;
-  setTitle: (title: string) => void;
-  subtitle: string;
-  setSubtitle: (subtitle: string) => void;
-  textColor: string;
-  setTextColor: (color: string) => void;
-  fontSize: number;
-  setFontSize: (size: number) => void;
+  title: TitleConfig;
+  setTitle: (title: TitleConfig) => void;
+  subtitle: SubtitleConfig;
+  setSubtitle: (subtitle: SubtitleConfig) => void;
   vignetteColor: string;
   setVignetteColor: (color: string) => void;
   vignettePosition: "top" | "bottom" | "none";
@@ -84,10 +86,6 @@ export function ControlPanel({
   setTitle,
   subtitle,
   setSubtitle,
-  textColor,
-  setTextColor,
-  fontSize,
-  setFontSize,
   vignetteColor,
   setVignetteColor,
   vignettePosition,
@@ -106,6 +104,14 @@ export function ControlPanel({
   carouselPosition,
   setCarouselPosition,
 }: ControlPanelProps) {
+  const handleTitleChange = (value: string, name: keyof TitleConfig) => {
+    setTitle({ ...title, [name]: value });
+  };
+
+  const handleSubtitleChange = (value: string, name: keyof SubtitleConfig) => {
+    setSubtitle({ ...subtitle, [name]: value });
+  };
+
   const handleSocialMediaChange = (platform: string, handle: string) => {
     const updatedSocial = socialMedia.find((s) => s.platform === platform)
       ? socialMedia.map((s) => (s.platform === platform ? { ...s, handle } : s))
@@ -134,8 +140,8 @@ export function ControlPanel({
             <div className="flex items-center gap-2">
               <Input
                 type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={title.text}
+                onChange={(e) => handleTitleChange(e.target.value, "text")}
               />
               <Popover>
                 <PopoverTrigger asChild>
@@ -156,7 +162,12 @@ export function ControlPanel({
                     <div className="grid gap-2">
                       <div className="grid grid-cols-3 items-center gap-4">
                         <Label htmlFor="font-family">Font family</Label>
-                        <Select>
+                        <Select
+                          value={title.fontFamily}
+                          onValueChange={(value) =>
+                            handleTitleChange(value, "fontFamily")
+                          }
+                        >
                           <SelectTrigger className="col-span-2">
                             <SelectValue placeholder="Geist Sans" />
                           </SelectTrigger>
@@ -173,7 +184,12 @@ export function ControlPanel({
                       </div>
                       <div className="grid grid-cols-3 items-center gap-4 font-">
                         <Label htmlFor="font-weight">Font weight</Label>
-                        <Select>
+                        <Select
+                          value={title.fontWeight}
+                          onValueChange={(value) =>
+                            handleTitleChange(value, "fontWeight")
+                          }
+                        >
                           <SelectTrigger className="col-span-2">
                             <SelectValue placeholder="Regular" />
                           </SelectTrigger>
@@ -193,8 +209,10 @@ export function ControlPanel({
                         <Input
                           type="number"
                           className="col-span-2"
-                          value={fontSize}
-                          onChange={(e) => setFontSize(Number(e.target.value))}
+                          value={title.fontSize}
+                          onChange={(e) =>
+                            handleTitleChange(e.target.value, "fontSize")
+                          }
                         />
                       </div>
                       <div className="grid grid-cols-3 items-center gap-4">
@@ -202,8 +220,10 @@ export function ControlPanel({
                         <Input
                           type="color"
                           className="col-span-2"
-                          value={textColor}
-                          onChange={(e) => setTextColor(e.target.value)}
+                          value={title.color}
+                          onChange={(e) =>
+                            handleTitleChange(e.target.value, "color")
+                          }
                         />
                       </div>
                     </div>
@@ -304,8 +324,8 @@ export function ControlPanel({
             <div className="flex items-center gap-2">
               <Input
                 type="text"
-                value={subtitle}
-                onChange={(e) => setSubtitle(e.target.value)}
+                value={subtitle.text}
+                onChange={(e) => handleSubtitleChange(e.target.value, "text")}
               />
               <Popover>
                 <PopoverTrigger asChild>
@@ -343,7 +363,12 @@ export function ControlPanel({
                       </div>
                       <div className="grid grid-cols-3 items-center gap-4 font-">
                         <Label htmlFor="font-weight">Font weight</Label>
-                        <Select>
+                        <Select
+                          value={subtitle.fontWeight}
+                          onValueChange={(e) =>
+                            handleSubtitleChange(e, "fontWeight")
+                          }
+                        >
                           <SelectTrigger className="col-span-2">
                             <SelectValue placeholder="Regular" />
                           </SelectTrigger>
@@ -363,8 +388,10 @@ export function ControlPanel({
                         <Input
                           type="number"
                           className="col-span-2"
-                          value={fontSize}
-                          onChange={(e) => setFontSize(Number(e.target.value))}
+                          value={subtitle.fontSize}
+                          onChange={(e) =>
+                            handleSubtitleChange(e.target.value, "fontSize")
+                          }
                         />
                       </div>
                       <div className="grid grid-cols-3 items-center gap-4">
@@ -372,8 +399,10 @@ export function ControlPanel({
                         <Input
                           type="color"
                           className="col-span-2"
-                          value={textColor}
-                          onChange={(e) => setTextColor(e.target.value)}
+                          value={subtitle.color}
+                          onChange={(e) =>
+                            handleSubtitleChange(e.target.value, "color")
+                          }
                         />
                       </div>
                     </div>

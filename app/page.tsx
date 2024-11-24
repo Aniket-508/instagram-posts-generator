@@ -3,11 +3,17 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 import html2canvas from "html2canvas";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ImagePreview } from "@/components/image-preview";
 import { ControlPanel } from "@/components/control-panel";
-import { Position, SocialMedia, HighlightConfig } from "@/types";
+import {
+  Position,
+  SocialMedia,
+  HighlightConfig,
+  TitleConfig,
+  SubtitleConfig,
+} from "@/types";
 import { ModeToggle } from "@/components/mode-toggle";
 import { BUY_ME_A_COFFEE_URL, PORTFOLIO_URL } from "@/lib/routes";
 
@@ -15,10 +21,21 @@ function App() {
   const [backgroundImage, setBackgroundImage] = useState(
     "https://images.unsplash.com/photo-1492684223066-81342ee5ff30"
   );
-  const [title, setTitle] = useState("Add your headline here");
-  const [subtitle, setSubtitle] = useState("Add a subtitle or description");
-  const [textColor, setTextColor] = useState("#ffffff");
-  const [fontSize, setFontSize] = useState(48);
+  const [title, setTitle] = useState<TitleConfig>({
+    text: "Add a title",
+    color: "#ffffff",
+    fontSize: "48",
+    fontWeight: "700",
+    fontFamily: "geistSans",
+    position: "top",
+  });
+  const [subtitle, setSubtitle] = useState<SubtitleConfig>({
+    text: "Add a subtitle or description",
+    color: "#ffffff",
+    fontSize: "16",
+    fontWeight: "400",
+    fontFamily: "geistSans",
+  });
   const [vignetteColor, setVignetteColor] = useState("#000000");
   const [vignettePosition, setVignettePosition] = useState<
     "top" | "bottom" | "none"
@@ -93,10 +110,6 @@ function App() {
           setTitle={setTitle}
           subtitle={subtitle}
           setSubtitle={setSubtitle}
-          textColor={textColor}
-          setTextColor={setTextColor}
-          fontSize={fontSize}
-          setFontSize={setFontSize}
           vignetteColor={vignetteColor}
           setVignetteColor={setVignetteColor}
           vignettePosition={vignettePosition}
@@ -122,8 +135,6 @@ function App() {
           backgroundImage={backgroundImage}
           title={title}
           subtitle={subtitle}
-          textColor={textColor}
-          fontSize={fontSize}
           vignetteColor={vignetteColor}
           vignettePosition={vignettePosition}
           highlight={highlight}

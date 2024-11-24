@@ -17,6 +17,17 @@ export interface SocialMedia {
   handle: string;
 }
 
+export interface TitleConfig {
+  text: string;
+  color: string;
+  fontSize: string;
+  fontWeight: string;
+  fontFamily: string;
+  position: "top" | "bottom";
+}
+
+export type SubtitleConfig = Omit<TitleConfig, "position">;
+
 export interface HighlightConfig {
   text: string;
   color: string;

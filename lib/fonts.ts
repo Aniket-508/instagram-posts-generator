@@ -1,5 +1,5 @@
 export const fontFamily = {
-  "giest-sans": "Giest Sans",
+  geistSans: "Geist Sans",
   inter: "Inter",
 };
 

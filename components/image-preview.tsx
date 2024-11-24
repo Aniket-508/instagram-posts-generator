@@ -11,15 +11,19 @@ import {
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./ui/tabs";
 import { Button } from "./ui/button";
 import { getPositionClasses, getSocialPositionClasses } from "@/lib/utils";
-import { Position, SocialMedia, HighlightConfig } from "@/types";
+import {
+  Position,
+  SocialMedia,
+  HighlightConfig,
+  TitleConfig,
+  SubtitleConfig,
+} from "@/types";
 
 interface ImagePreviewProps {
   imageRef: React.RefObject<HTMLDivElement>;
   backgroundImage: string;
-  title: string;
-  subtitle: string;
-  textColor: string;
-  fontSize: number;
+  title: TitleConfig;
+  subtitle: SubtitleConfig;
   vignetteColor: string;
   vignettePosition: "top" | "bottom" | "none";
   highlight: HighlightConfig;
@@ -37,8 +41,6 @@ export function ImagePreview({
   backgroundImage,
   title,
   subtitle,
-  textColor,
-  fontSize,
   vignetteColor,
   vignettePosition,
   highlight,
@@ -59,8 +61,8 @@ export function ImagePreview({
   };
 
   const renderHighlightedTitle = () => {
-    if (!highlight.text) return title;
-    const parts = title.split(highlight.text);
+    if (!highlight.text) return title.text;
+    const parts = title.text.split(highlight.text);
     return (
       <>
         {parts.map((part, i) => (
@@ -125,13 +127,26 @@ export function ImagePreview({
 
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <h2
-                    className="font-bold mb-4 leading-tight"
-                    style={{ color: textColor, fontSize: `${fontSize}px` }}
+                    className="font-bold leading-tight"
+                    style={{
+                      color: title.color,
+                      fontSize: `${title.fontSize}px`,
+                      fontWeight: title.fontWeight,
+                      fontFamily: `'${title.fontFamily}'`,
+                    }}
                   >
                     {renderHighlightedTitle()}
                   </h2>
-                  <p className="text-lg" style={{ color: textColor }}>
-                    {subtitle}
+                  <p
+                    className="text-lg"
+                    style={{
+                      color: subtitle.color,
+                      fontSize: `${subtitle.fontSize}px`,
+                      fontWeight: subtitle.fontWeight,
+                      fontFamily: `'${subtitle.fontFamily}'`,
+                    }}
+                  >
+                    {subtitle.text}
                   </p>
                 </div>
 
