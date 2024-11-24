@@ -1,101 +1,145 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import React, { useState, useRef } from "react";
+import Link from "next/link";
+import html2canvas from "html2canvas";
+import { buttonVariants } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { ImagePreview } from "@/components/image-preview";
+import { ControlPanel } from "@/components/control-panel";
+import { Position, SocialMedia, HighlightConfig } from "@/types";
+import { ModeToggle } from "@/components/mode-toggle";
+import { BUY_ME_A_COFFEE_URL, PORTFOLIO_URL } from "@/lib/routes";
+
+function App() {
+  const [backgroundImage, setBackgroundImage] = useState(
+    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30"
+  );
+  const [title, setTitle] = useState("Add your headline here");
+  const [subtitle, setSubtitle] = useState("Add a subtitle or description");
+  const [textColor, setTextColor] = useState("#ffffff");
+  const [fontSize, setFontSize] = useState(48);
+  const [vignetteColor, setVignetteColor] = useState("#000000");
+  const [vignettePosition, setVignettePosition] = useState<
+    "top" | "bottom" | "none"
+  >("bottom");
+  const [highlight, setHighlight] = useState<HighlightConfig>({
+    text: "Add your",
+    color: "#368c47",
+  });
+  const [logoUrl, setLogoUrl] = useState("");
+  const [logoPosition, setLogoPosition] = useState<Position>("none");
+  const [socialMedia, setSocialMedia] = useState<SocialMedia[]>([]);
+  const [socialPosition, setSocialPosition] = useState<Position>("none");
+  const [isCarousel, setIsCarousel] = useState(false);
+  const [carouselPosition, setCarouselPosition] = useState<Position>("none");
+
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  const handleDownload = async () => {
+    if (!imageRef.current) return;
+
+    const canvas = await html2canvas(imageRef.current);
+    const link = document.createElement("a");
+    link.download = "generated-image.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  };
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen bg-background text-foreground py-16">
+      <div className="fixed top-4 right-4">
+        <ModeToggle />
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+      <div className="text-center mb-8 space-y-2 px-4">
+        <h1 className="text-4xl font-bold">The Tatva India Generator</h1>
+        <p className="text-gray-600 dark:text-gray-400">
+          Generate 👊 news / 😜 posts for your socials similar to{" "}
+          <Link
+            href={"https://www.instagram.com/thetatvaindia/"}
             target="_blank"
-            rel="noopener noreferrer"
+            className={buttonVariants({
+              variant: "link",
+              className: "px-0.5 py-0 text-base",
+            })}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            The Tatva India
+          </Link>{" "}
+          with a few clicks
+        </p>
+        <div className="flex h-5 items-center justify-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+          <Link
+            href={PORTFOLIO_URL}
             target="_blank"
-            rel="noopener noreferrer"
+            className="hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
           >
-            Read our docs
-          </a>
+            made by aniket
+          </Link>
+          <Separator orientation="vertical" />
+          <Link
+            href={BUY_ME_A_COFFEE_URL}
+            target="_blank"
+            className="hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
+          >
+            buy aniket a coffee
+          </Link>
         </div>
+      </div>
+
+      <main className="container mx-auto p-4 grid grid-cols-1 lg:grid-cols-2 gap-4 mt-8">
+        <ControlPanel
+          backgroundImage={backgroundImage}
+          setBackgroundImage={setBackgroundImage}
+          title={title}
+          setTitle={setTitle}
+          subtitle={subtitle}
+          setSubtitle={setSubtitle}
+          textColor={textColor}
+          setTextColor={setTextColor}
+          fontSize={fontSize}
+          setFontSize={setFontSize}
+          vignetteColor={vignetteColor}
+          setVignetteColor={setVignetteColor}
+          vignettePosition={vignettePosition}
+          setVignettePosition={setVignettePosition}
+          highlight={highlight}
+          setHighlight={setHighlight}
+          logoUrl={logoUrl}
+          setLogoUrl={setLogoUrl}
+          logoPosition={logoPosition}
+          setLogoPosition={setLogoPosition}
+          socialMedia={socialMedia}
+          setSocialMedia={setSocialMedia}
+          socialPosition={socialPosition}
+          setSocialPosition={setSocialPosition}
+          isCarousel={isCarousel}
+          setIsCarousel={setIsCarousel}
+          carouselPosition={carouselPosition}
+          setCarouselPosition={setCarouselPosition}
+        />
+
+        <ImagePreview
+          imageRef={imageRef}
+          backgroundImage={backgroundImage}
+          title={title}
+          subtitle={subtitle}
+          textColor={textColor}
+          fontSize={fontSize}
+          vignetteColor={vignetteColor}
+          vignettePosition={vignettePosition}
+          highlight={highlight}
+          logoUrl={logoUrl}
+          logoPosition={logoPosition}
+          socialMedia={socialMedia}
+          socialPosition={socialPosition}
+          isCarousel={isCarousel}
+          carouselPosition={carouselPosition}
+          handleDownload={handleDownload}
+        />
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
+
+export default App;
