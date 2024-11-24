@@ -3,7 +3,7 @@
 import React, { useState, useRef } from "react";
 import Link from "next/link";
 import html2canvas from "html2canvas";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ImagePreview } from "@/components/image-preview";
 import { ControlPanel } from "@/components/control-panel";
@@ -56,16 +56,14 @@ function App() {
         <h1 className="text-4xl font-bold">The Tatva India Generator</h1>
         <p className="text-gray-600 dark:text-gray-400">
           Generate 👊 news / 😜 posts for your socials similar to{" "}
-          <Link
-            href={"https://www.instagram.com/thetatvaindia/"}
-            target="_blank"
-            className={buttonVariants({
-              variant: "link",
-              className: "px-0.5 py-0 text-base",
-            })}
-          >
-            The Tatva India
-          </Link>{" "}
+          <Button asChild variant="link" className="px-0.5 py-0">
+            <Link
+              href={"https://www.instagram.com/thetatvaindia/"}
+              target="_blank"
+            >
+              The Tatva India
+            </Link>
+          </Button>{" "}
           with a few clicks
         </p>
         <div className="flex h-5 items-center justify-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
