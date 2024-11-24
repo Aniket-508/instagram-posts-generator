@@ -117,7 +117,7 @@ export function ControlPanel({
   };
 
   return (
-    <div className="space-y-4">
+    <div className="order-last col-span-1 space-y-4 lg:order-first">
       <Card>
         <CardHeader>
           <CardTitle>Template Properties</CardTitle>
@@ -539,31 +539,21 @@ export function ControlPanel({
                 value={vignetteColor}
                 onChange={(e) => setVignetteColor(e.target.value)}
               />
-              <div className="flex gap-2">
-                <Button
-                  variant={vignettePosition === "top" ? "default" : "outline"}
-                  onClick={() => setVignettePosition("top")}
-                  className="flex-1"
-                >
-                  Top
-                </Button>
-                <Button
-                  variant={
-                    vignettePosition === "bottom" ? "default" : "outline"
-                  }
-                  onClick={() => setVignettePosition("bottom")}
-                  className="flex-1"
-                >
-                  Bottom
-                </Button>
-                <Button
-                  variant={vignettePosition === "none" ? "default" : "outline"}
-                  onClick={() => setVignettePosition("none")}
-                  className="flex-1"
-                >
-                  None
-                </Button>
-              </div>
+              <Select
+                value={vignettePosition}
+                onValueChange={setVignettePosition}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Position" />
+                </SelectTrigger>
+                <SelectContent>
+                  {["top", "bottom", "none"].map((pos) => (
+                    <SelectItem key={pos} value={pos}>
+                      {pos}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
