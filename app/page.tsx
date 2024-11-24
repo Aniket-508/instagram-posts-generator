@@ -48,7 +48,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background text-foreground py-16">
-      <div className="absolute top-4 right-4">
+      <div className="fixed top-4 right-4">
         <ModeToggle />
       </div>
 
@@ -87,7 +87,7 @@ function App() {
         </div>
       </div>
 
-      <main className="container mx-auto p-4 grid lg:grid-cols-3 gap-4 mt-8">
+      <main className="container mx-auto p-4 grid grid-cols-1 lg:grid-cols-2 gap-4 mt-8">
         <ControlPanel
           backgroundImage={backgroundImage}
           setBackgroundImage={setBackgroundImage}

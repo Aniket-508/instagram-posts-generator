@@ -78,7 +78,7 @@ export function ImagePreview({
   };
 
   return (
-    <div className="order-first lg:order-last lg:col-span-2">
+    <div className="">
       <div className="sticky top-0">
         <Card>
           <CardContent className="p-2 md:p-4">
