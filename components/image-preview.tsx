@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { MoveRight, Download } from "lucide-react";
+import { MoveRight, Download, Lock } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -10,13 +10,15 @@ import {
 } from "./ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./ui/tabs";
 import { Button } from "./ui/button";
-import { getPositionClasses, getSocialPositionClasses } from "@/lib/utils";
+import { AspectRatio } from "./ui/aspect-ratio";
+import { cn, getPositionClasses, getSocialPositionClasses } from "@/lib/utils";
 import {
   Position,
   SocialMedia,
   HighlightConfig,
   TitleConfig,
   SubtitleConfig,
+  SocialMediaConfig,
 } from "@/types";
 
 interface ImagePreviewProps {
@@ -30,7 +32,7 @@ interface ImagePreviewProps {
   logoUrl: string;
   logoPosition: Position;
   socialMedia: SocialMedia[];
-  socialPosition: Position;
+  socialMediaSettings: SocialMediaConfig;
   isCarousel: boolean;
   carouselPosition: Position;
   handleDownload: () => void;
@@ -47,7 +49,7 @@ export function ImagePreview({
   logoUrl,
   logoPosition,
   socialMedia,
-  socialPosition,
+  socialMediaSettings,
   isCarousel,
   carouselPosition,
   handleDownload,
@@ -84,19 +86,15 @@ export function ImagePreview({
       <div className="sticky top-0">
         <Card>
           <CardContent className="p-2 md:p-4">
-            <div className="relative">
-              <div
-                ref={imageRef}
-                className="aspect-[4/3] w-full relative overflow-hidden rounded-lg shadow-xl"
-                style={{ backgroundColor: "#000" }}
-              >
+            <div className="overflow-hidden">
+              <AspectRatio ref={imageRef} className="bg-black" ratio={4 / 5}>
                 <Image
                   src={backgroundImage}
-                  alt="Background"
-                  priority
-                  fill
-                  sizes="100%"
-                  className="absolute inset-0 w-full h-full object-cover"
+                  alt="preview"
+                  fetchPriority="high"
+                  width={1080}
+                  height={1350}
+                  className="h-full w-full object-contain"
                 />
                 <div
                   className="absolute inset-0"
@@ -107,9 +105,9 @@ export function ImagePreview({
                   <Image
                     src={logoUrl}
                     alt="Logo"
-                    width={64}
-                    height={64}
-                    className={`absolute w-16 h-16 object-contain ${getPositionClasses(
+                    width={48}
+                    height={48}
+                    className={`absolute w-14 h-14 object-contain ${getPositionClasses(
                       logoPosition
                     )}`}
                   />
@@ -117,60 +115,74 @@ export function ImagePreview({
 
                 {isCarousel && carouselPosition !== "none" && (
                   <div
-                    className={`absolute ${getPositionClasses(
-                      carouselPosition
-                    )}`}
+                    className={cn(
+                      "absolute",
+                      carouselPosition === "top-left" && "top-2 left-8",
+                      carouselPosition === "top-right" && "top-2 right-8",
+                      carouselPosition === "bottom-left" && "bottom-2 left-8",
+                      carouselPosition === "bottom-right" && "bottom-2 right-8"
+                    )}
                   >
-                    <MoveRight className="w-8 h-8 text-white" />
+                    <MoveRight className="w-24 h-24 text-white" />
                   </div>
                 )}
 
-                <div className="absolute bottom-0 left-0 right-0 p-8">
+                <div className="absolute bottom-0 left-0 right-0 p-8 pb-32">
                   <h2
                     className="font-bold leading-tight"
                     style={{
                       color: title.color,
                       fontSize: `${title.fontSize}px`,
                       fontWeight: title.fontWeight,
-                      fontFamily: `'${title.fontFamily}'`,
+                      fontFamily: `var(--font-${title.fontFamily})`,
                     }}
                   >
                     {renderHighlightedTitle()}
                   </h2>
                   <p
-                    className="text-lg"
+                    className="text-lg mt-1"
                     style={{
                       color: subtitle.color,
                       fontSize: `${subtitle.fontSize}px`,
                       fontWeight: subtitle.fontWeight,
-                      fontFamily: `'${subtitle.fontFamily}'`,
+                      fontFamily: `var(--font-${subtitle.fontFamily})`,
                     }}
                   >
                     {subtitle.text}
                   </p>
                 </div>
 
-                {socialPosition !== "none" && socialMedia.length > 0 && (
-                  <div
-                    className={`absolute flex gap-4 [writing-mode:vertical-lr] ${getSocialPositionClasses(
-                      socialPosition
-                    )}`}
-                  >
-                    {socialMedia.map(({ platform, handle }) => (
-                      <span key={platform} className="text-white text-sm">
-                        @{handle}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
+                {socialMediaSettings.position !== "none" &&
+                  socialMedia.length > 0 && (
+                    <div
+                      className={`absolute flex gap-4 [writing-mode:vertical-lr] ${getSocialPositionClasses(
+                        socialMediaSettings.position
+                      )}`}
+                    >
+                      {socialMedia.map(({ platform, handle }) => (
+                        <span
+                          key={platform}
+                          className="text-xl"
+                          style={{
+                            color: socialMediaSettings.color,
+                          }}
+                        >
+                          @{handle}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+              </AspectRatio>
             </div>
           </CardContent>
         </Card>
         <Tabs defaultValue="account" className="mt-4">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="account">Save Image</TabsTrigger>
-            <TabsTrigger value="password">API Request</TabsTrigger>
+            <TabsTrigger value="password" disabled>
+              <Lock className="h-4 w-4 mr-2" />
+              API Request
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="account">
             <Card>

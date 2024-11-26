@@ -1,3 +1,5 @@
+import { fontFamilies } from "@/lib/fonts";
+
 export type Position =
   | "top-left"
   | "top-right"
@@ -17,12 +19,17 @@ export interface SocialMedia {
   handle: string;
 }
 
+export interface SocialMediaConfig {
+  position: Position;
+  color: string;
+}
+
 export interface TitleConfig {
   text: string;
   color: string;
   fontSize: string;
   fontWeight: string;
-  fontFamily: string;
+  fontFamily: FontFamily;
   position: "top" | "bottom";
 }
 
@@ -32,3 +39,5 @@ export interface HighlightConfig {
   text: string;
   color: string;
 }
+
+export type FontFamily = keyof typeof fontFamilies;

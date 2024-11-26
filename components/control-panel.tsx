@@ -31,9 +31,10 @@ import {
   HighlightConfig,
   TitleConfig,
   SubtitleConfig,
+  SocialMediaConfig,
 } from "@/types";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { fontFamily, fontWeight } from "@/lib/fonts";
+import { fontFamilies, fontWeight } from "@/lib/fonts";
 
 interface ControlPanelProps {
   backgroundImage: string;
@@ -54,8 +55,8 @@ interface ControlPanelProps {
   setLogoPosition: (position: Position) => void;
   socialMedia: SocialMedia[];
   setSocialMedia: (social: SocialMedia[]) => void;
-  socialPosition: Position;
-  setSocialPosition: (position: Position) => void;
+  socialMediaSettings: SocialMediaConfig;
+  setSocialMediaSettings: (config: SocialMediaConfig) => void;
   isCarousel: boolean;
   setIsCarousel: (isCarousel: boolean) => void;
   carouselPosition: Position;
@@ -80,7 +81,6 @@ const socialPlatforms = [
 ];
 
 export function ControlPanel({
-  backgroundImage,
   setBackgroundImage,
   title,
   setTitle,
@@ -97,8 +97,8 @@ export function ControlPanel({
   setLogoPosition,
   socialMedia,
   setSocialMedia,
-  socialPosition,
-  setSocialPosition,
+  socialMediaSettings,
+  setSocialMediaSettings,
   isCarousel,
   setIsCarousel,
   carouselPosition,
@@ -110,6 +110,13 @@ export function ControlPanel({
 
   const handleSubtitleChange = (value: string, name: keyof SubtitleConfig) => {
     setSubtitle({ ...subtitle, [name]: value });
+  };
+
+  const handleSocialPositionChange = (
+    value: string,
+    name: keyof SocialMediaConfig
+  ) => {
+    setSocialMediaSettings({ ...socialMediaSettings, [name]: value });
   };
 
   const handleSocialMediaChange = (platform: string, handle: string) => {
@@ -172,7 +179,7 @@ export function ControlPanel({
                             <SelectValue placeholder="Geist Sans" />
                           </SelectTrigger>
                           <SelectContent>
-                            {Object.entries(fontFamily).map(
+                            {Object.entries(fontFamilies).map(
                               ([key, description]) => (
                                 <SelectItem key={key} value={key}>
                                   {description}
@@ -265,23 +272,6 @@ export function ControlPanel({
                     </div>
                     <div className="grid gap-2">
                       <div className="grid grid-cols-3 items-center gap-4">
-                        <Label htmlFor="font-family">Font Family</Label>
-                        <Select>
-                          <SelectTrigger className="col-span-2">
-                            <SelectValue placeholder="Geist Sans" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {Object.entries(fontFamily).map(
-                              ([key, description]) => (
-                                <SelectItem key={key} value={key}>
-                                  {description}
-                                </SelectItem>
-                              )
-                            )}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className="grid grid-cols-3 items-center gap-4">
                         <Label htmlFor="text-color">Text color</Label>
                         <Input
                           type="color"
@@ -346,12 +336,17 @@ export function ControlPanel({
                     <div className="grid gap-2">
                       <div className="grid grid-cols-3 items-center gap-4">
                         <Label htmlFor="font-family">Font family</Label>
-                        <Select>
+                        <Select
+                          value={subtitle.fontFamily}
+                          onValueChange={(value) =>
+                            handleSubtitleChange(value, "fontFamily")
+                          }
+                        >
                           <SelectTrigger className="col-span-2">
                             <SelectValue placeholder="Geist Sans" />
                           </SelectTrigger>
                           <SelectContent>
-                            {Object.entries(fontFamily).map(
+                            {Object.entries(fontFamilies).map(
                               ([key, description]) => (
                                 <SelectItem key={key} value={key}>
                                   {description}
@@ -423,11 +418,10 @@ export function ControlPanel({
                 type="file"
                 onChange={(e) => {
                   if (e.target.files) {
-                    console.log();
                     setLogoUrl(URL.createObjectURL(e.target.files[0]));
                   }
                 }}
-                placeholder="Logo URL"
+                placeholder="Upload here"
                 className="col-span-3"
               />
               <Popover>
@@ -513,8 +507,10 @@ export function ControlPanel({
                       <div className="grid grid-cols-3 items-center gap-4">
                         <Label htmlFor="position">Position</Label>
                         <Select
-                          value={socialPosition}
-                          onValueChange={setSocialPosition}
+                          value={socialMediaSettings.position}
+                          onValueChange={(val) =>
+                            handleSocialPositionChange(val, "position")
+                          }
                         >
                           <SelectTrigger className="col-span-2">
                             <SelectValue placeholder="Position" />
@@ -527,6 +523,17 @@ export function ControlPanel({
                             ))}
                           </SelectContent>
                         </Select>
+                      </div>
+                      <div className="grid grid-cols-3 items-center gap-4">
+                        <Label htmlFor="text-color">Text color</Label>
+                        <Input
+                          type="color"
+                          className="col-span-2"
+                          value={socialMediaSettings.color}
+                          onChange={(e) =>
+                            handleSocialPositionChange(e.target.value, "color")
+                          }
+                        />
                       </div>
                     </div>
                   </div>
@@ -551,9 +558,14 @@ export function ControlPanel({
               Background Image URL
             </Label>
             <Input
-              type="text"
-              value={backgroundImage}
-              onChange={(e) => setBackgroundImage(e.target.value)}
+              id="background-image"
+              type="file"
+              onChange={(e) => {
+                if (e.target.files) {
+                  setBackgroundImage(URL.createObjectURL(e.target.files[0]));
+                }
+              }}
+              placeholder="Upload here"
             />
           </div>
 

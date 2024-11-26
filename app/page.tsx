@@ -13,6 +13,7 @@ import {
   HighlightConfig,
   TitleConfig,
   SubtitleConfig,
+  SocialMediaConfig,
 } from "@/types";
 import { ModeToggle } from "@/components/mode-toggle";
 import { BUY_ME_A_COFFEE_URL, PORTFOLIO_URL } from "@/lib/routes";
@@ -22,7 +23,7 @@ function App() {
     "https://images.unsplash.com/photo-1492684223066-81342ee5ff30"
   );
   const [title, setTitle] = useState<TitleConfig>({
-    text: "Add a title",
+    text: "Add your post title",
     color: "#ffffff",
     fontSize: "48",
     fontWeight: "700",
@@ -32,7 +33,7 @@ function App() {
   const [subtitle, setSubtitle] = useState<SubtitleConfig>({
     text: "Add a subtitle or description",
     color: "#ffffff",
-    fontSize: "16",
+    fontSize: "20",
     fontWeight: "400",
     fontFamily: "geistSans",
   });
@@ -47,7 +48,10 @@ function App() {
   const [logoUrl, setLogoUrl] = useState("");
   const [logoPosition, setLogoPosition] = useState<Position>("none");
   const [socialMedia, setSocialMedia] = useState<SocialMedia[]>([]);
-  const [socialPosition, setSocialPosition] = useState<Position>("none");
+  const [socialMediaSettings, setSocialMediaSettings] = useState<SocialMediaConfig>({
+    position: "none",
+    color: "#ffffff",
+  });
   const [isCarousel, setIsCarousel] = useState(false);
   const [carouselPosition, setCarouselPosition] = useState<Position>("none");
 
@@ -122,8 +126,8 @@ function App() {
           setLogoPosition={setLogoPosition}
           socialMedia={socialMedia}
           setSocialMedia={setSocialMedia}
-          socialPosition={socialPosition}
-          setSocialPosition={setSocialPosition}
+          socialMediaSettings={socialMediaSettings}
+          setSocialMediaSettings={setSocialMediaSettings}
           isCarousel={isCarousel}
           setIsCarousel={setIsCarousel}
           carouselPosition={carouselPosition}
@@ -141,7 +145,7 @@ function App() {
           logoUrl={logoUrl}
           logoPosition={logoPosition}
           socialMedia={socialMedia}
-          socialPosition={socialPosition}
+          socialMediaSettings={socialMediaSettings}
           isCarousel={isCarousel}
           carouselPosition={carouselPosition}
           handleDownload={handleDownload}

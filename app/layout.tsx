@@ -2,6 +2,27 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/theme-provider";
 import { MAIN_METADATA } from "@/lib/meta";
+import {
+  inter,
+  openSans,
+  notoSans,
+  notoSansJP,
+  notoSansSC,
+  notoSansTC,
+  roboto,
+  poppins,
+  montserrat,
+  lato,
+  manrope,
+  ubuntu,
+  figtree,
+  firaSans,
+  firaCode,
+  firaMono,
+  sourceCodePro,
+  ibmPlexMono,
+  jetBrainsMono,
+} from "@/lib/fonts";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -43,7 +64,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${openSans.variable} ${notoSans.variable} ${notoSansJP.variable} ${notoSansSC.variable} ${notoSansTC.variable} ${roboto.variable} ${poppins.variable} ${montserrat.variable} ${lato.variable} ${manrope.variable} ${ubuntu.variable} ${figtree.variable} ${firaSans.variable} ${firaCode.variable} ${firaMono.variable} ${sourceCodePro.variable} ${ibmPlexMono.variable} ${jetBrainsMono.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
