@@ -11,7 +11,7 @@ import {
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "./ui/tabs";
 import { Button } from "./ui/button";
 import { AspectRatio } from "./ui/aspect-ratio";
-import { cn, getPositionClasses, getSocialPositionClasses } from "@/lib/utils";
+import { cn, getPositionClasses } from "@/lib/utils";
 import {
   Position,
   SocialMedia,
@@ -135,8 +135,8 @@ export function ImagePreview({
                 <div
                   className={cn(
                     "absolute left-0 right-0 p-8",
-                    title.position === "top" && "top-0 pt-32",
-                    title.position === "bottom" && "bottom-0 pb-32"
+                    title.position === "top" && "top-0 pt-24",
+                    title.position === "bottom" && "bottom-0 pb-24"
                   )}
                 >
                   <h2
@@ -166,9 +166,17 @@ export function ImagePreview({
                 {socialMediaSettings.position !== "none" &&
                   socialMedia.length > 0 && (
                     <div
-                      className={`absolute flex gap-4 [writing-mode:vertical-lr] ${getSocialPositionClasses(
-                        socialMediaSettings.position
-                      )}`}
+                      className={cn(
+                        `absolute flex gap-4 [writing-mode:vertical-lr]`,
+                        socialMediaSettings.position === "top-left" &&
+                          "top-4 left-2",
+                        socialMediaSettings.position === "top-right" &&
+                          "top-4 right-2",
+                        socialMediaSettings.position === "bottom-left" &&
+                          "bottom-4 left-2",
+                        socialMediaSettings.position === "bottom-right" &&
+                          "bottom-4 right-2 rotate-180"
+                      )}
                     >
                       {socialMedia.map(({ platform, handle }) => (
                         <span
