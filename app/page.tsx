@@ -43,17 +43,20 @@ function App() {
   >("bottom");
   const [highlight, setHighlight] = useState<HighlightConfig>({
     text: "Add your",
-    color: "#368c47",
+    color: "#ffffff",
+    bgColor: "#368c47",
   });
   const [logoUrl, setLogoUrl] = useState("");
   const [logoPosition, setLogoPosition] = useState<Position>("none");
   const [socialMedia, setSocialMedia] = useState<SocialMedia[]>([]);
-  const [socialMediaSettings, setSocialMediaSettings] = useState<SocialMediaConfig>({
-    position: "none",
-    color: "#ffffff",
-  });
+  const [socialMediaSettings, setSocialMediaSettings] =
+    useState<SocialMediaConfig>({
+      position: "none",
+      color: "#ffffff",
+    });
   const [isCarousel, setIsCarousel] = useState(false);
-  const [carouselPosition, setCarouselPosition] = useState<Position>("none");
+  const [carouselPosition, setCarouselPosition] =
+    useState<Position>("bottom-right");
 
   const imageRef = useRef<HTMLDivElement>(null);
 

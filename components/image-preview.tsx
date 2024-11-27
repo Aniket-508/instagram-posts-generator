@@ -71,7 +71,12 @@ export function ImagePreview({
           <React.Fragment key={i}>
             {part}
             {i < parts.length - 1 && (
-              <span style={{ backgroundColor: highlight.color }}>
+              <span
+                style={{
+                  backgroundColor: highlight.bgColor,
+                  color: highlight.color,
+                }}
+              >
                 {highlight.text}
               </span>
             )}

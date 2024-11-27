@@ -291,11 +291,11 @@ export function ControlPanel({
                         <Label htmlFor="bg-color">Bg color</Label>
                         <Input
                           type="color"
-                          value={highlight.color}
+                          value={highlight.bgColor}
                           onChange={(e) =>
                             setHighlight({
                               ...highlight,
-                              color: e.target.value,
+                              bgColor: e.target.value,
                             })
                           }
                           className="col-span-2"

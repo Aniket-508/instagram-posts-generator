@@ -38,6 +38,7 @@ export type SubtitleConfig = Omit<TitleConfig, "position">;
 export interface HighlightConfig {
   text: string;
   color: string;
+  bgColor: string;
 }
 
 export type FontFamily = keyof typeof fontFamilies;
