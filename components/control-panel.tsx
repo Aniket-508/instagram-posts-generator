@@ -6,6 +6,7 @@ import {
   Frame,
   Share2,
   Settings2,
+  Pin,
 } from "lucide-react";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
@@ -35,6 +36,7 @@ import {
 } from "@/types";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { fontFamilies, fontWeight } from "@/lib/fonts";
+import { Separator } from "./ui/separator";
 
 interface ControlPanelProps {
   backgroundImage: string;
@@ -409,6 +411,30 @@ export function ControlPanel({
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
+              <Pin className="h-4 w-4" />
+              Position
+            </Label>
+            <Select
+              value={title.position}
+              onValueChange={(val) => handleTitleChange(val, "position")}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Position" />
+              </SelectTrigger>
+              <SelectContent>
+                {["top", "bottom", "none"].map((pos) => (
+                  <SelectItem key={pos} value={pos}>
+                    {pos}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <Separator />
+
+          <div className="space-y-2">
+            <Label className="flex items-center gap-2">
               <Frame className="h-4 w-4" />
               Logo
             </Label>
@@ -556,6 +582,9 @@ export function ControlPanel({
             <Label className="flex items-center gap-2">
               <ImageIcon className="h-4 w-4" />
               Background Image URL
+              <span className="text-muted-foreground">
+                (1080 * 1350 pixels)
+              </span>
             </Label>
             <Input
               id="background-image"

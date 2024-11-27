@@ -127,7 +127,13 @@ export function ImagePreview({
                   </div>
                 )}
 
-                <div className="absolute bottom-0 left-0 right-0 p-8 pb-32">
+                <div
+                  className={cn(
+                    "absolute left-0 right-0 p-8",
+                    title.position === "top" && "top-0 pt-32",
+                    title.position === "bottom" && "bottom-0 pb-32"
+                  )}
+                >
                   <h2
                     className="font-bold leading-tight"
                     style={{

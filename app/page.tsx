@@ -28,7 +28,7 @@ function App() {
     fontSize: "48",
     fontWeight: "700",
     fontFamily: "geistSans",
-    position: "top",
+    position: "bottom",
   });
   const [subtitle, setSubtitle] = useState<SubtitleConfig>({
     text: "Add a subtitle or description",
