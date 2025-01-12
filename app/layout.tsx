@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner"
 
 import "./globals.css"
 
+import Script from "next/script"
 import { TemplateStoreProvider } from "@/providers/template-store-provider"
 
 import { ModeToggle } from "@/components/mode-toggle"
@@ -70,6 +71,11 @@ export default function RootLayout({
         </ThemeProvider>
         <Toaster />
       </body>
+      <Script
+        src="https://sdk.feedback.one/v0/core.min.js"
+        data-project-id="01945a76-4e22-74f1-9a0c-e06025de1755"
+        defer
+      />
     </html>
   )
 }
