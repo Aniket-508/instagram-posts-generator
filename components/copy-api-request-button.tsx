@@ -4,6 +4,7 @@ import { useTemplateStore } from "@/providers/template-store-provider"
 import { ChevronDown } from "lucide-react"
 import { toast } from "sonner"
 
+import { API_BASE_URL } from "@/lib/routes"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -27,7 +28,7 @@ export function CopyApiRequestButton() {
       await navigator.clipboard.writeText(JSON.stringify(requestBody, null, 2))
     } else if (copyAs === "curl") {
       const curl = `curl -H "Content-Type: application/json" \\
-  ${process.env.NEXT_PUBLIC_API_URL}/v1/images \\
+  ${API_BASE_URL}/v1/images \\
   -d '${JSON.stringify(requestBody, null, 2)}'`
 
       await navigator.clipboard.writeText(curl)
