@@ -50,7 +50,7 @@ export function CopyApiRequestButton() {
           Copy as JSON
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => handleCopy({ copyAs: "curl" })}>
-          Copy as curl
+          Copy as cURL
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

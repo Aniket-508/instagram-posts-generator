@@ -2,7 +2,7 @@ import { z } from "zod"
 
 import * as tatvaIndia from "./tatva-india"
 
-export const templateNameSchema = z.literal("tatva-india")
+const templateNameSchema = z.literal("tatva-india")
 export type TemplateName = z.infer<typeof templateNameSchema>
 
 export const templateSchema = z.discriminatedUnion("name", [

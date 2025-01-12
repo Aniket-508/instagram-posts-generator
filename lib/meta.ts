@@ -1,10 +1,10 @@
 import { BASE_URL } from "./routes"
 
 export const MAIN_METADATA = {
-  SITE_NAME: "The Tatva India Generator",
-  TITLE: "The Tatva India Generator",
+  SITE_NAME: "Instagram Posts Generator",
+  TITLE: "Instagram Posts Generator",
   DESCRIPTION:
-    "Generate 📰 or 😜 posts for your socials similar to The Tatva India with a few clicks",
+    "Generate 👊 news / 😜 posts for your socials with templates from popular instagram pages with a few clicks",
   IMAGE: "",
   URL: BASE_URL,
 }
