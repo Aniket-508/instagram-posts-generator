@@ -25,6 +25,8 @@ interface TextSettingsProps {
   onChangeFontSize: (fontSize: number) => void
   color: string
   onChangeColor: (color: string) => void
+  bgColor?: string
+  onChangeBgColor?: (color: string) => void
   className?: string
 }
 
@@ -37,6 +39,8 @@ export function TextSettings({
   onChangeFontSize,
   color,
   onChangeColor,
+  bgColor,
+  onChangeBgColor,
   className,
 }: TextSettingsProps) {
   return (
@@ -98,6 +102,18 @@ export function TextSettings({
             onChange={(e) => onChangeFontSize(parseInt(e.currentTarget.value))}
           />
         </div>
+
+        {bgColor && onChangeBgColor && (
+          <div className="grid grid-cols-3 items-center gap-4">
+            <Label htmlFor="bg-color">Background Color</Label>
+            <Input
+              type="bg-color"
+              value={bgColor}
+              className="col-span-2 h-8"
+              onChange={(e) => onChangeBgColor(e.currentTarget.value)}
+            />
+          </div>
+        )}
 
         <div className="grid grid-cols-3 items-center gap-4">
           <Label htmlFor="text-color">Text Color</Label>

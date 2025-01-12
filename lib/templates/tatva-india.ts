@@ -2,7 +2,11 @@ import { z } from "zod"
 
 import { absoluteUrl } from "@/lib/url"
 
-import { backgroundSchema } from "./elements/background"
+import {
+  backgroundSchema,
+  CornerPositionOptions,
+  PositionOptions,
+} from "./elements/background"
 import { canvasSchema } from "./elements/canvas"
 import { imageSchema } from "./elements/image"
 import { textSchema } from "./elements/text"
@@ -23,7 +27,24 @@ export const tatvaIndiaSchema = z.object({
         fontSize: textSchema.shape.fontSize.default(30),
       })
     ),
+    highlightedText: textSchema.merge(
+      z.object({
+        text: z.string(),
+        // apply defaults
+        bgColor: textSchema.shape.color.default("#777777"),
+        color: textSchema.shape.color.default("#ffffff"),
+      })
+    ),
     logo: imageSchema,
+    position: z.nativeEnum(PositionOptions).default(PositionOptions.BOTTOM),
+    socialMedia: z.object({
+      text: z.string(),
+      // apply defaults
+      position: z
+        .nativeEnum(CornerPositionOptions)
+        .default(CornerPositionOptions.NONE),
+      color: z.string().default("#ffffff"),
+    }),
   }),
   background: backgroundSchema,
   canvas: canvasSchema,
@@ -34,32 +55,46 @@ export const tatvaIndiaDefault: TatvaIndia = {
   name: "tatva-india",
   params: {
     title: {
+      text: "Vercel: Your Complete Platform for the Web",
+      fontFamily: "inter",
+      fontWeight: 700,
+      fontSize: 52,
+      color: "#ffffff",
+    },
+    description: {
+      text: "Build and deploy your web apps with the best developer experience.",
+      fontFamily: "inter",
+      fontWeight: 400,
+      fontSize: 30,
+      color: "#ffffff",
+    },
+    highlightedText: {
       text: "Vercel",
       fontFamily: "inter",
       fontWeight: 700,
       fontSize: 52,
-      color: "#030712",
-    },
-    description: {
-      text: "The Frontend Cloud",
-      fontFamily: "inter",
-      fontWeight: 400,
-      fontSize: 30,
-      color: "#030712",
+      bgColor: "#777777",
+      color: "#ffffff",
     },
     logo: {
       url: absoluteUrl("/vercel.svg"),
     },
+    position: PositionOptions.BOTTOM,
+    socialMedia: {
+      color: "#ffffff",
+      position: CornerPositionOptions.NONE,
+      text: "vercel",
+    },
   },
   background: {
     url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30",
-    color: "#000000",
     vignette: {
       color: "#000000",
-      position: "bottom",
+      position: PositionOptions.NONE,
     },
     carousel: {
-      position: "none",
+      color: "#ffffff",
+      position: CornerPositionOptions.NONE,
     },
   },
   canvas: {

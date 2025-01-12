@@ -10,6 +10,7 @@ export const Template = ({ template }: { template: TatvaIndia }) => (
       justifyContent: "center",
       alignItems: "center",
       textAlign: "center",
+      position: "relative",
     }}
   >
     <div
@@ -21,6 +22,34 @@ export const Template = ({ template }: { template: TatvaIndia }) => (
         backgroundImage: `url('${template.background.url}')`,
       }}
     ></div>
+
+    {template.background.carousel.position === "none" && (
+      <div
+        style={{
+          display: "flex",
+          position: "absolute",
+          top: "50%",
+          right: "0",
+          transform: "translateY(-50%)",
+          color: template.background.carousel.color,
+        }}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="96"
+          height="96"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M18 8L22 12L18 16" />
+          <path d="M2 12H22" />
+        </svg>
+      </div>
+    )}
 
     <div
       style={{

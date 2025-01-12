@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CopyApiRequestButton } from "@/components/copy-api-request-button"
+import BackgroundForm from "@/components/forms/background-form"
 import TemplateForm from "@/components/forms/template-form"
 import PreviewRenderer from "@/components/preview-renderer"
 import SaveImageButton from "@/components/save-image-button"
@@ -18,6 +19,7 @@ export default function Home() {
     <>
       <div className="order-last col-span-1 space-y-4 lg:order-first">
         <TemplateForm />
+        <BackgroundForm />
       </div>
 
       <div className="order-first lg:order-last lg:col-span-2">
@@ -41,7 +43,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent className="flex items-center justify-between space-x-2">
                   <div className="flex items-center">
-                    <Info className="mr-2 h-4 w-4" />
+                    <Info className="mr-2 h-4 w-4 flex-shrink-0" />
                     <p className="text-sm">
                       We are yet to support other file formats.
                     </p>
@@ -61,9 +63,9 @@ export default function Home() {
                 </CardHeader>
                 <CardContent className="flex items-center justify-between space-x-2">
                   <div className="flex items-center">
-                    <Info className="mr-2 h-4 w-4" />
+                    <Info className="mr-2 h-4 w-4 flex-shrink-0" />
                     <p className="text-sm">
-                      Copy the request body as JSON or a cURL command.
+                      Copy the request body as JSON or a cURL.
                     </p>
                   </div>
 
