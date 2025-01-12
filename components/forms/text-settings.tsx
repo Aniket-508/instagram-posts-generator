@@ -107,7 +107,8 @@ export function TextSettings({
           <div className="grid grid-cols-3 items-center gap-4">
             <Label htmlFor="bg-color">Background Color</Label>
             <Input
-              type="bg-color"
+              id="bg-color"
+              type="color"
               value={bgColor}
               className="col-span-2 h-8"
               onChange={(e) => onChangeBgColor(e.currentTarget.value)}
@@ -118,6 +119,7 @@ export function TextSettings({
         <div className="grid grid-cols-3 items-center gap-4">
           <Label htmlFor="text-color">Text Color</Label>
           <Input
+            id="text-color"
             type="color"
             value={color}
             className="col-span-2 h-8"

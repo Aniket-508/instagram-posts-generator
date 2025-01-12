@@ -1,10 +1,7 @@
 import { useTemplateStore } from "@/providers/template-store-provider"
+import { CornerPositionOptions, PositionOptions } from "@/types"
 import { Settings2 } from "lucide-react"
 
-import {
-  CornerPositionOptions,
-  PositionOptions,
-} from "@/lib/templates/elements/background"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -280,20 +277,64 @@ export function Form() {
 
             <div className="grid w-full max-w-sm items-center gap-1.5">
               <Label htmlFor="logo">Logo</Label>
-              <ImageSelector
-                id="logo"
-                onChange={(v) =>
-                  template.updateParams({
-                    logo: {
-                      ...params.logo,
-                      url: v ?? "",
-                    },
-                  })
-                }
-                initialFileName={
-                  params.logo.url ? params.logo.url.split("/").pop() : undefined
-                }
-              />
+              <div className="flex">
+                <ImageSelector
+                  id="logo"
+                  onChange={(v) =>
+                    template.updateParams({
+                      logo: {
+                        ...params.logo,
+                        url: v ?? "",
+                      },
+                    })
+                  }
+                  initialFileName={
+                    params.logo.url
+                      ? params.logo.url.split("/").pop()
+                      : undefined
+                  }
+                />
+                <div className="ml-2">
+                  <ResponsivePopover
+                    title="Logo Settings"
+                    description="Customize the logo."
+                    trigger={
+                      <Button variant="outline" size="icon">
+                        <Settings2 className="h-4 w-4" />
+                      </Button>
+                    }
+                  >
+                    <div className="grid gap-2">
+                      <div className="grid grid-cols-3 items-center gap-4">
+                        <Label htmlFor="position">Position</Label>
+                        <Select
+                          value={template.params.logo.position}
+                          onValueChange={(val: CornerPositionOptions) =>
+                            template.updateParams({
+                              ...template.params,
+                              logo: {
+                                ...template.params.logo,
+                                position: val,
+                              },
+                            })
+                          }
+                        >
+                          <SelectTrigger className="col-span-2">
+                            <SelectValue placeholder="Position" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {Object.values(CornerPositionOptions).map((pos) => (
+                              <SelectItem key={pos} value={pos}>
+                                {pos.replace("-", " ")}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                  </ResponsivePopover>
+                </div>
+              </div>
             </div>
 
             <div className="flex flex-col space-y-1.5">

@@ -1,23 +1,12 @@
+import { CornerPositionOptions, PositionOptions } from "@/types"
 import { z } from "zod"
 
-export enum PositionOptions {
-  TOP = "top",
-  BOTTOM = "bottom",
-  NONE = "none",
-}
 export const vignetteSchema = z.object({
   color: z.string(),
   position: z.nativeEnum(PositionOptions),
 })
 export type VignetteParams = z.infer<typeof vignetteSchema>
 
-export enum CornerPositionOptions {
-  TOP_LEFT = "top-left",
-  TOP_RIGHT = "top-right",
-  BOTTOM_LEFT = "bottom-left",
-  BOTTOM_RIGHT = "bottom-right",
-  NONE = "none",
-}
 export const carouselSchema = z.object({
   color: z.string(),
   position: z.nativeEnum(CornerPositionOptions),

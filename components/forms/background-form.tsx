@@ -1,11 +1,10 @@
 "use client"
 
 import { useTemplateStore } from "@/providers/template-store-provider"
+import { CornerPositionOptions, PositionOptions } from "@/types"
 
 import {
   CarouselParams,
-  CornerPositionOptions,
-  PositionOptions,
   VignetteParams,
 } from "@/lib/templates/elements/background"
 import {

@@ -1,44 +1,13 @@
-import { fontFamilies } from "@/lib/fonts"
-
-export type Position =
-  | "top-left"
-  | "top-right"
-  | "bottom-left"
-  | "bottom-right"
-  | "none"
-
-export type SocialPlatform =
-  | "twitter"
-  | "instagram"
-  | "facebook"
-  | "linkedin"
-  | "github"
-
-export interface SocialMedia {
-  platform: SocialPlatform
-  handle: string
+export enum PositionOptions {
+  TOP = "top",
+  BOTTOM = "bottom",
+  NONE = "none",
 }
 
-export interface SocialMediaConfig {
-  position: Position
-  color: string
+export enum CornerPositionOptions {
+  TOP_LEFT = "top-left",
+  TOP_RIGHT = "top-right",
+  BOTTOM_LEFT = "bottom-left",
+  BOTTOM_RIGHT = "bottom-right",
+  NONE = "none",
 }
-
-export interface TitleConfig {
-  text: string
-  color: string
-  fontSize: string
-  fontWeight: string
-  fontFamily: FontFamily
-  position: "top" | "bottom"
-}
-
-export type SubtitleConfig = Omit<TitleConfig, "position">
-
-export interface HighlightConfig {
-  text: string
-  color: string
-  bgColor: string
-}
-
-export type FontFamily = keyof typeof fontFamilies

@@ -1,12 +1,9 @@
+import { CornerPositionOptions, PositionOptions } from "@/types"
 import { z } from "zod"
 
 import { absoluteUrl } from "@/lib/url"
 
-import {
-  backgroundSchema,
-  CornerPositionOptions,
-  PositionOptions,
-} from "./elements/background"
+import { backgroundSchema } from "./elements/background"
 import { canvasSchema } from "./elements/canvas"
 import { imageSchema } from "./elements/image"
 import { textSchema } from "./elements/text"
@@ -78,11 +75,12 @@ export const tatvaIndiaDefault: TatvaIndia = {
     },
     logo: {
       url: absoluteUrl("/vercel.svg"),
+      position: CornerPositionOptions.BOTTOM_LEFT,
     },
     position: PositionOptions.BOTTOM,
     socialMedia: {
       color: "#ffffff",
-      position: CornerPositionOptions.NONE,
+      position: CornerPositionOptions.TOP_RIGHT,
       text: "vercel",
     },
   },
@@ -90,7 +88,7 @@ export const tatvaIndiaDefault: TatvaIndia = {
     url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30",
     vignette: {
       color: "#000000",
-      position: PositionOptions.NONE,
+      position: PositionOptions.BOTTOM,
     },
     carousel: {
       color: "#ffffff",
