@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
-  "homepage": "https://imgsrc.io",
+  "homepage": "https://the-tatva-india-generator.vercel.app/",
   "author": "Aniket Pawar <pawaraniket508@gmail.com>",
   "scripts": {
     "dev": "next dev",
