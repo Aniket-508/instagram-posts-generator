@@ -1,161 +1,79 @@
-"use client";
+import { Info } from "lucide-react"
 
-import React, { useState, useRef } from "react";
-import Link from "next/link";
-import html2canvas from "html2canvas";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { ImagePreview } from "@/components/image-preview";
-import { ControlPanel } from "@/components/control-panel";
 import {
-  Position,
-  SocialMedia,
-  HighlightConfig,
-  TitleConfig,
-  SubtitleConfig,
-  SocialMediaConfig,
-} from "@/types";
-import { ModeToggle } from "@/components/mode-toggle";
-import { BUY_ME_A_COFFEE_URL, PORTFOLIO_URL } from "@/lib/routes";
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { CopyApiRequestButton } from "@/components/copy-api-request-button"
+import TemplateForm from "@/components/forms/template-form"
+import PreviewRenderer from "@/components/preview-renderer"
+import SaveImageButton from "@/components/save-image-button"
 
-function App() {
-  const [backgroundImage, setBackgroundImage] = useState(
-    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30"
-  );
-  const [title, setTitle] = useState<TitleConfig>({
-    text: "Add your post title",
-    color: "#ffffff",
-    fontSize: "48",
-    fontWeight: "700",
-    fontFamily: "geistSans",
-    position: "bottom",
-  });
-  const [subtitle, setSubtitle] = useState<SubtitleConfig>({
-    text: "Add a subtitle or description",
-    color: "#ffffff",
-    fontSize: "20",
-    fontWeight: "400",
-    fontFamily: "geistSans",
-  });
-  const [vignetteColor, setVignetteColor] = useState("#000000");
-  const [vignettePosition, setVignettePosition] = useState<
-    "top" | "bottom" | "none"
-  >("bottom");
-  const [highlight, setHighlight] = useState<HighlightConfig>({
-    text: "Add your",
-    color: "#ffffff",
-    bgColor: "#368c47",
-  });
-  const [logoUrl, setLogoUrl] = useState("");
-  const [logoPosition, setLogoPosition] = useState<Position>("none");
-  const [socialMedia, setSocialMedia] = useState<SocialMedia[]>([]);
-  const [socialMediaSettings, setSocialMediaSettings] =
-    useState<SocialMediaConfig>({
-      position: "none",
-      color: "#ffffff",
-    });
-  const [isCarousel, setIsCarousel] = useState(false);
-  const [carouselPosition, setCarouselPosition] =
-    useState<Position>("bottom-right");
-
-  const imageRef = useRef<HTMLDivElement>(null);
-
-  const handleDownload = async () => {
-    if (!imageRef.current) return;
-
-    const canvas = await html2canvas(imageRef.current);
-    const link = document.createElement("a");
-    link.download = "generated-image.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
-  };
-
+export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground py-16">
-      <div className="absolute top-4 right-4">
-        <ModeToggle />
+    <>
+      <div className="order-last col-span-1 space-y-4 lg:order-first">
+        <TemplateForm />
       </div>
 
-      <div className="text-center mb-8 space-y-2 px-4">
-        <h1 className="text-4xl font-bold">The Tatva India Generator</h1>
-        <p className="text-gray-600 dark:text-gray-400">
-          Generate 👊 news / 😜 posts for your socials similar to{" "}
-          <Button asChild variant="link" className="px-0.5 py-0">
-            <Link
-              href={"https://www.instagram.com/thetatvaindia/"}
-              target="_blank"
-            >
-              The Tatva India
-            </Link>
-          </Button>{" "}
-          with a few clicks
-        </p>
-        <div className="flex h-5 items-center justify-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
-          <Link
-            href={PORTFOLIO_URL}
-            target="_blank"
-            className="hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
-          >
-            made by aniket
-          </Link>
-          <Separator orientation="vertical" />
-          <Link
-            href={BUY_ME_A_COFFEE_URL}
-            target="_blank"
-            className="hover:text-gray-900 dark:hover:text-gray-200 transition-colors"
-          >
-            buy aniket a coffee
-          </Link>
+      <div className="order-first lg:order-last lg:col-span-2">
+        <div className="sticky top-0 grow-0 space-y-4">
+          <Card className="col-span-2 px-2 md:px-4">
+            <div className="overflow-hidden">
+              <PreviewRenderer />
+            </div>
+          </Card>
+
+          <Tabs defaultValue="save">
+            <TabsList className="grid grid-cols-2">
+              <TabsTrigger value="save">Save Image</TabsTrigger>
+              <TabsTrigger value="api">API Request</TabsTrigger>
+            </TabsList>
+            <TabsContent value="save">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Save Image</CardTitle>
+                  <CardDescription>Export the image as a PNG.</CardDescription>
+                </CardHeader>
+                <CardContent className="flex items-center justify-between space-x-2">
+                  <div className="flex items-center">
+                    <Info className="mr-2 h-4 w-4" />
+                    <p className="text-sm">
+                      We are yet to support other file formats.
+                    </p>
+                  </div>
+
+                  <SaveImageButton />
+                </CardContent>
+              </Card>
+            </TabsContent>
+            <TabsContent value="api">
+              <Card>
+                <CardHeader>
+                  <CardTitle>API Request</CardTitle>
+                  <CardDescription>
+                    Generate images on the fly with our API.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex items-center justify-between space-x-2">
+                  <div className="flex items-center">
+                    <Info className="mr-2 h-4 w-4" />
+                    <p className="text-sm">
+                      Copy the request body as JSON or a cURL command.
+                    </p>
+                  </div>
+
+                  <CopyApiRequestButton />
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
-
-      <main className="container mx-auto p-4 grid lg:grid-cols-3 gap-4 mt-8">
-        <ControlPanel
-          backgroundImage={backgroundImage}
-          setBackgroundImage={setBackgroundImage}
-          title={title}
-          setTitle={setTitle}
-          subtitle={subtitle}
-          setSubtitle={setSubtitle}
-          vignetteColor={vignetteColor}
-          setVignetteColor={setVignetteColor}
-          vignettePosition={vignettePosition}
-          setVignettePosition={setVignettePosition}
-          highlight={highlight}
-          setHighlight={setHighlight}
-          logoUrl={logoUrl}
-          setLogoUrl={setLogoUrl}
-          logoPosition={logoPosition}
-          setLogoPosition={setLogoPosition}
-          socialMedia={socialMedia}
-          setSocialMedia={setSocialMedia}
-          socialMediaSettings={socialMediaSettings}
-          setSocialMediaSettings={setSocialMediaSettings}
-          isCarousel={isCarousel}
-          setIsCarousel={setIsCarousel}
-          carouselPosition={carouselPosition}
-          setCarouselPosition={setCarouselPosition}
-        />
-
-        <ImagePreview
-          imageRef={imageRef}
-          backgroundImage={backgroundImage}
-          title={title}
-          subtitle={subtitle}
-          vignetteColor={vignetteColor}
-          vignettePosition={vignettePosition}
-          highlight={highlight}
-          logoUrl={logoUrl}
-          logoPosition={logoPosition}
-          socialMedia={socialMedia}
-          socialMediaSettings={socialMediaSettings}
-          isCarousel={isCarousel}
-          carouselPosition={carouselPosition}
-          handleDownload={handleDownload}
-        />
-      </main>
-    </div>
-  );
+    </>
+  )
 }
-
-export default App;

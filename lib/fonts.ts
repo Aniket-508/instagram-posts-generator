@@ -1,169 +1,225 @@
-import {
-  Inter,
-  Open_Sans,
-  Noto_Sans,
-  Noto_Sans_JP,
-  Noto_Sans_TC,
-  Noto_Sans_SC,
-  Roboto,
-  Poppins,
-  Montserrat,
-  Lato,
-  Manrope,
-  Ubuntu,
-  Figtree,
-  Fira_Sans,
-  Fira_Code,
-  Fira_Mono,
-  Source_Code_Pro,
-  IBM_Plex_Mono,
-  JetBrains_Mono,
-} from "next/font/google";
+import { z } from "zod"
 
-export const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+import type { Template } from "./templates"
 
-export const openSans = Open_Sans({
-  subsets: ["latin"],
-  variable: "--font-open-sans",
-});
+const DEFAULT_WEIGHT = 400
+const DEFAULT_FONT_FAMILY = "inter"
 
-export const notoSans = Noto_Sans({
-  subsets: ["latin"],
-  variable: "--font-noto-sans",
-});
+export const fontWeightSchema = z
+  .union([
+    z.literal(100),
+    z.literal(200),
+    z.literal(300),
+    z.literal(400),
+    z.literal(500),
+    z.literal(600),
+    z.literal(700),
+    z.literal(800),
+    z.literal(900),
+  ])
+  .default(DEFAULT_WEIGHT)
+export type FontWeight = z.infer<typeof fontWeightSchema>
 
-export const notoSansJP = Noto_Sans_JP({
-  subsets: ["latin"],
-  variable: "--font-noto-sans-jp",
-});
+export const fontFamilySchema = z
+  .enum([
+    "inter",
+    "open-sans",
+    "noto-sans",
+    "noto-sans-jp",
+    "noto-sans-tc",
+    "noto-sans-sc",
+    "roboto",
+    "poppins",
+    "montserrat",
+    "lato",
+    "manrope",
+    "ubuntu",
+    "figtree",
+    "fira-sans",
+    "fira-code",
+    "fira-mono",
+    "source-code-pro",
+    "ibm-plex-mono",
+    "jetbrains-mono",
+  ])
+  .default(DEFAULT_FONT_FAMILY)
+export type FontFamily = z.infer<typeof fontFamilySchema>
 
-export const notoSansTC = Noto_Sans_TC({
-  subsets: ["latin"],
-  variable: "--font-noto-sans-tc",
-});
-
-export const notoSansSC = Noto_Sans_SC({
-  subsets: ["latin"],
-  variable: "--font-noto-sans-sc",
-});
-
-export const roboto = Roboto({
-  weight: ["100", "300", "400", "500", "700", "900"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-roboto",
-});
-
-export const poppins = Poppins({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-poppins",
-});
-
-export const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-montserrat",
-});
-
-export const lato = Lato({
-  weight: ["100", "300", "400", "700", "900"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-lato",
-});
-
-export const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-manrope",
-});
-
-export const ubuntu = Ubuntu({
-  weight: ["300", "400", "500", "700"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-ubuntu",
-});
-
-export const figtree = Figtree({
-  subsets: ["latin"],
-  variable: "--font-figtree",
-});
-
-export const firaSans = Fira_Sans({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-fira-sans",
-});
-
-export const firaCode = Fira_Code({
-  subsets: ["latin"],
-  variable: "--font-fira-code",
-});
-
-export const firaMono = Fira_Mono({
-  weight: ["400", "500", "700"],
-  style: ["normal"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-fira-mono",
-});
-
-export const sourceCodePro = Source_Code_Pro({
-  subsets: ["latin"],
-  variable: "--font-source-code-pro",
-});
-
-export const ibmPlexMono = IBM_Plex_Mono({
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-ibm-plex-mono",
-});
-
-export const jetBrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-});
-
-export const fontFamilies = {
-  geistSans: "Geist Sans",
-  inter: "Inter",
-  "open-sans": "Open Sans",
-  "noto-sans": "Noto Sans",
-  "noto-sans-jp": "Noto Sans JP",
-  "noto-sans-tc": "Noto Sans TC",
-  "noto-sans-sc": "Noto Sans SC",
-  roboto: "Roboto",
-  poppins: "Poppins",
-  montserrat: "Montserrat",
-  lato: "Lato",
-  manrope: "Manrope",
-  ubuntu: "Ubuntu",
-  figtree: "Figtree",
-  "fira-sans": "Fira Sans",
-  "fira-code": "Fira Code",
-  "fira-mono": "Fira Mono",
-  "source-code-pro": "Source Code Pro",
-  "ibm-plex-mono": "IBM Plex Mono",
-  "jetbrains-mono": "JetBrains Mono",
-};
-
-export const fontWeight = {
+export const fontWeights = {
   100: "Thin",
-  200: "ExtraLight",
+  200: "Extra Light",
   300: "Light",
   400: "Regular",
   500: "Medium",
-  600: "SemiBold",
+  600: "Semi Bold",
   700: "Bold",
-  800: "ExtraBold",
+  800: "Extra Bold",
   900: "Black",
-};
+} as const
+
+export const supportedFonts: {
+  value: FontFamily
+  label: string
+  weights: FontWeight[]
+  subset: "latin" | "japanese" | "chinese-traditional" | "chinese-simplified"
+}[] = [
+  {
+    value: "inter",
+    label: "Inter",
+    weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    subset: "latin",
+  },
+  {
+    value: "open-sans",
+    label: "Open Sans",
+    weights: [300, 400, 500, 600, 700, 800],
+    subset: "latin",
+  },
+  {
+    value: "noto-sans",
+    label: "Noto Sans",
+    weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    subset: "latin",
+  },
+  {
+    value: "noto-sans-jp",
+    label: "Noto Sans (Japanese)",
+    weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    subset: "japanese",
+  },
+  {
+    value: "noto-sans-tc",
+    label: "Noto Sans (Traditional Chinese)",
+    weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    subset: "chinese-traditional",
+  },
+  {
+    value: "noto-sans-sc",
+    label: "Noto Sans (Simplified Chinese)",
+    weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    subset: "chinese-simplified",
+  },
+  {
+    value: "roboto",
+    label: "Roboto",
+    weights: [100, 300, 400, 500, 700, 900],
+    subset: "latin",
+  },
+  {
+    value: "poppins",
+    label: "Poppins",
+    weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    subset: "latin",
+  },
+  {
+    value: "montserrat",
+    label: "Montserrat",
+    weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    subset: "latin",
+  },
+  {
+    value: "lato",
+    label: "Lato",
+    weights: [100, 300, 400, 700, 900],
+    subset: "latin",
+  },
+  {
+    value: "manrope",
+    label: "Manrope",
+    weights: [200, 300, 400, 500, 600, 700, 800],
+    subset: "latin",
+  },
+  {
+    value: "ubuntu",
+    label: "Ubuntu",
+    weights: [300, 400, 500, 700],
+    subset: "latin",
+  },
+  {
+    value: "figtree",
+    label: "Figtree",
+    weights: [300, 400, 500, 600, 700, 800, 900],
+    subset: "latin",
+  },
+  {
+    value: "fira-sans",
+    label: "Fira Sans",
+    weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    subset: "latin",
+  },
+  {
+    value: "fira-code",
+    label: "Fira Code",
+    weights: [300, 400, 500, 600, 700],
+    subset: "latin",
+  },
+  {
+    value: "fira-mono",
+    label: "Fira Mono",
+    weights: [400, 500, 700],
+    subset: "latin",
+  },
+  {
+    value: "source-code-pro",
+    label: "Source Code Pro",
+    weights: [200, 300, 400, 500, 600, 700, 800, 900],
+    subset: "latin",
+  },
+  {
+    value: "ibm-plex-mono",
+    label: "IBM Plex Mono",
+    weights: [100, 200, 300, 400, 500, 600, 700],
+    subset: "latin",
+  },
+  {
+    value: "jetbrains-mono",
+    label: "JetBrains Mono",
+    weights: [100, 200, 300, 400, 500, 600, 700, 800],
+    subset: "latin",
+  },
+] as const
+
+export function getFontUrl({
+  family,
+  weight,
+}: {
+  family: FontFamily
+  weight: FontWeight
+}) {
+  const subset =
+    supportedFonts.find((f) => f.value === family)?.subset ?? "latin"
+
+  return `https://cdn.jsdelivr.net/fontsource/fonts/${family}@latest/${subset}-${weight}-normal.woff`
+}
+
+// getFontsFromTemplate returns a list of fonts used in a template
+export function getFontsFromTemplate(template: Template["params"]) {
+  const fonts: { family: FontFamily; weight: FontWeight }[] = []
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  for (const [_key, value] of Object.entries(template)) {
+    if (
+      value && // ensure the value is non-null
+      typeof value === "object" &&
+      "fontFamily" in value &&
+      "fontWeight" in value
+    ) {
+      // dedupe based on font weight and family
+      if (
+        fonts.find(
+          (font) =>
+            font.family === value.fontFamily && font.weight === value.fontWeight
+        )
+      ) {
+        continue
+      }
+
+      fonts.push({
+        family: value.fontFamily,
+        weight: value.fontWeight,
+      })
+    }
+  }
+
+  return fonts
+}
