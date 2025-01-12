@@ -1,62 +1,19 @@
-import { useLayoutEffect, useEffect, useState } from "react";
+import * as React from "react"
 
-const useIsomorphicLayoutEffect =
-  typeof window !== "undefined" ? useLayoutEffect : useEffect;
+export function useMediaQuery(query: string) {
+  const [value, setValue] = React.useState(false)
 
-type UseMediaQueryOptions = {
-  defaultValue?: boolean;
-  initializeWithValue?: boolean;
-};
-
-const IS_SERVER = typeof window === "undefined";
-
-export function useMediaQuery(
-  query: string,
-  {
-    defaultValue = false,
-    initializeWithValue = true,
-  }: UseMediaQueryOptions = {}
-): boolean {
-  const getMatches = (query: string): boolean => {
-    if (IS_SERVER) {
-      return defaultValue;
-    }
-    return window.matchMedia(query).matches;
-  };
-
-  const [matches, setMatches] = useState<boolean>(() => {
-    if (initializeWithValue) {
-      return getMatches(query);
-    }
-    return defaultValue;
-  });
-
-  // Handles the change event of the media query.
-  function handleChange() {
-    setMatches(getMatches(query));
-  }
-
-  useIsomorphicLayoutEffect(() => {
-    const matchMedia = window.matchMedia(query);
-
-    // Triggered at the first client-side load and if query changes
-    handleChange();
-
-    // Use deprecated `addListener` and `removeListener` to support Safari < 14 (#135)
-    if (matchMedia.addListener) {
-      matchMedia.addListener(handleChange);
-    } else {
-      matchMedia.addEventListener("change", handleChange);
+  React.useEffect(() => {
+    function onChange(event: MediaQueryListEvent) {
+      setValue(event.matches)
     }
 
-    return () => {
-      if (matchMedia.removeListener) {
-        matchMedia.removeListener(handleChange);
-      } else {
-        matchMedia.removeEventListener("change", handleChange);
-      }
-    };
-  }, [query]);
+    const result = matchMedia(query)
+    result.addEventListener("change", onChange)
+    setValue(result.matches)
 
-  return matches;
+    return () => result.removeEventListener("change", onChange)
+  }, [query])
+
+  return value
 }

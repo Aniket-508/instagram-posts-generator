@@ -1,68 +1,70 @@
 import {
-  Image as ImageIcon,
-  Type,
-  Droplets,
-  Highlighter,
-  Frame,
-  Share2,
-  Settings2,
-  Pin,
-} from "lucide-react";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Button } from "./ui/button";
+  HighlightConfig,
+  Position,
+  SocialMedia,
+  SocialMediaConfig,
+  SubtitleConfig,
+  TitleConfig,
+} from "@/types"
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
-import { Checkbox } from "./ui/checkbox";
+  Droplets,
+  Frame,
+  Highlighter,
+  Image as ImageIcon,
+  Pin,
+  Settings2,
+  Share2,
+  Type,
+} from "lucide-react"
+
+import { fontFamilies, fontWeight } from "@/lib/fonts"
+
+import { Button } from "./ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "./ui/card";
+} from "./ui/card"
+import { Checkbox } from "./ui/checkbox"
+import { Input } from "./ui/input"
+import { Label } from "./ui/label"
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import {
-  Position,
-  SocialMedia,
-  HighlightConfig,
-  TitleConfig,
-  SubtitleConfig,
-  SocialMediaConfig,
-} from "@/types";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { fontFamilies, fontWeight } from "@/lib/fonts";
-import { Separator } from "./ui/separator";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select"
+import { Separator } from "./ui/separator"
 
 interface ControlPanelProps {
-  backgroundImage: string;
-  setBackgroundImage: (url: string) => void;
-  title: TitleConfig;
-  setTitle: (title: TitleConfig) => void;
-  subtitle: SubtitleConfig;
-  setSubtitle: (subtitle: SubtitleConfig) => void;
-  vignetteColor: string;
-  setVignetteColor: (color: string) => void;
-  vignettePosition: "top" | "bottom" | "none";
-  setVignettePosition: (position: "top" | "bottom" | "none") => void;
-  highlight: HighlightConfig;
-  setHighlight: (config: HighlightConfig) => void;
-  logoUrl: string;
-  setLogoUrl: (url: string) => void;
-  logoPosition: Position;
-  setLogoPosition: (position: Position) => void;
-  socialMedia: SocialMedia[];
-  setSocialMedia: (social: SocialMedia[]) => void;
-  socialMediaSettings: SocialMediaConfig;
-  setSocialMediaSettings: (config: SocialMediaConfig) => void;
-  isCarousel: boolean;
-  setIsCarousel: (isCarousel: boolean) => void;
-  carouselPosition: Position;
-  setCarouselPosition: (position: Position) => void;
+  backgroundImage: string
+  setBackgroundImage: (url: string) => void
+  title: TitleConfig
+  setTitle: (title: TitleConfig) => void
+  subtitle: SubtitleConfig
+  setSubtitle: (subtitle: SubtitleConfig) => void
+  vignetteColor: string
+  setVignetteColor: (color: string) => void
+  vignettePosition: "top" | "bottom" | "none"
+  setVignettePosition: (position: "top" | "bottom" | "none") => void
+  highlight: HighlightConfig
+  setHighlight: (config: HighlightConfig) => void
+  logoUrl: string
+  setLogoUrl: (url: string) => void
+  logoPosition: Position
+  setLogoPosition: (position: Position) => void
+  socialMedia: SocialMedia[]
+  setSocialMedia: (social: SocialMedia[]) => void
+  socialMediaSettings: SocialMediaConfig
+  setSocialMediaSettings: (config: SocialMediaConfig) => void
+  isCarousel: boolean
+  setIsCarousel: (isCarousel: boolean) => void
+  carouselPosition: Position
+  setCarouselPosition: (position: Position) => void
 }
 
 const positionOptions: Position[] = [
@@ -71,7 +73,7 @@ const positionOptions: Position[] = [
   "bottom-left",
   "bottom-right",
   "none",
-];
+]
 
 const socialPlatforms = [
   "social",
@@ -80,7 +82,7 @@ const socialPlatforms = [
   // "facebook",
   // "linkedin",
   // "github",
-];
+]
 
 export function ControlPanel({
   setBackgroundImage,
@@ -107,19 +109,19 @@ export function ControlPanel({
   setCarouselPosition,
 }: ControlPanelProps) {
   const handleTitleChange = (value: string, name: keyof TitleConfig) => {
-    setTitle({ ...title, [name]: value });
-  };
+    setTitle({ ...title, [name]: value })
+  }
 
   const handleSubtitleChange = (value: string, name: keyof SubtitleConfig) => {
-    setSubtitle({ ...subtitle, [name]: value });
-  };
+    setSubtitle({ ...subtitle, [name]: value })
+  }
 
   const handleSocialPositionChange = (
     value: string,
     name: keyof SocialMediaConfig
   ) => {
-    setSocialMediaSettings({ ...socialMediaSettings, [name]: value });
-  };
+    setSocialMediaSettings({ ...socialMediaSettings, [name]: value })
+  }
 
   const handleSocialMediaChange = (platform: string, handle: string) => {
     const updatedSocial = socialMedia.find((s) => s.platform === platform)
@@ -127,9 +129,9 @@ export function ControlPanel({
       : [
           ...socialMedia,
           { platform: platform as SocialMedia["platform"], handle },
-        ];
-    setSocialMedia(updatedSocial);
-  };
+        ]
+    setSocialMedia(updatedSocial)
+  }
 
   return (
     <div className="order-last col-span-1 space-y-4 lg:order-first">
@@ -143,7 +145,7 @@ export function ControlPanel({
         <CardContent className="space-y-4">
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
-              <Type className="h-4 w-4" />
+              <Type className="h-4 w-4 flex-shrink-0" />
               Title
             </Label>
             <div className="flex items-center gap-2">
@@ -191,7 +193,7 @@ export function ControlPanel({
                           </SelectContent>
                         </Select>
                       </div>
-                      <div className="grid grid-cols-3 items-center gap-4 font-">
+                      <div className="font- grid grid-cols-3 items-center gap-4">
                         <Label htmlFor="font-weight">Font weight</Label>
                         <Select
                           value={title.fontWeight}
@@ -244,7 +246,7 @@ export function ControlPanel({
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
-              <Highlighter className="h-4 w-4" />
+              <Highlighter className="h-4 w-4 flex-shrink-0" />
               Highlight Text
             </Label>
             <div className="flex items-center gap-2">
@@ -310,7 +312,7 @@ export function ControlPanel({
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
-              <Type className="h-4 w-4" />
+              <Type className="h-4 w-4 flex-shrink-0" />
               Subtitle
             </Label>
             <div className="flex items-center gap-2">
@@ -358,7 +360,7 @@ export function ControlPanel({
                           </SelectContent>
                         </Select>
                       </div>
-                      <div className="grid grid-cols-3 items-center gap-4 font-">
+                      <div className="font- grid grid-cols-3 items-center gap-4">
                         <Label htmlFor="font-weight">Font weight</Label>
                         <Select
                           value={subtitle.fontWeight}
@@ -411,7 +413,7 @@ export function ControlPanel({
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
-              <Pin className="h-4 w-4" />
+              <Pin className="h-4 w-4 flex-shrink-0" />
               Position
             </Label>
             <Select
@@ -435,7 +437,7 @@ export function ControlPanel({
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
-              <Frame className="h-4 w-4" />
+              <Frame className="h-4 w-4 flex-shrink-0" />
               Logo
             </Label>
             <div className="flex items-center space-x-2">
@@ -444,7 +446,7 @@ export function ControlPanel({
                 type="file"
                 onChange={(e) => {
                   if (e.target.files) {
-                    setLogoUrl(URL.createObjectURL(e.target.files[0]));
+                    setLogoUrl(URL.createObjectURL(e.target.files[0]))
                   }
                 }}
                 placeholder="Upload here"
@@ -494,7 +496,7 @@ export function ControlPanel({
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
-              <Share2 className="h-4 w-4" />
+              <Share2 className="h-4 w-4 flex-shrink-0" />
               Social Media
             </Label>
             <div className="flex items-center space-x-2">
@@ -580,18 +582,15 @@ export function ControlPanel({
         <CardContent className="space-y-4">
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
-              <ImageIcon className="h-4 w-4" />
+              <ImageIcon className="h-4 w-4 flex-shrink-0" />
               Background Image URL
-              <span className="text-muted-foreground">
-                (1080 * 1350 pixels)
-              </span>
             </Label>
             <Input
               id="background-image"
               type="file"
               onChange={(e) => {
                 if (e.target.files) {
-                  setBackgroundImage(URL.createObjectURL(e.target.files[0]));
+                  setBackgroundImage(URL.createObjectURL(e.target.files[0]))
                 }
               }}
               placeholder="Upload here"
@@ -600,7 +599,7 @@ export function ControlPanel({
 
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
-              <Droplets className="h-4 w-4" />
+              <Droplets className="h-4 w-4 flex-shrink-0" />
               Vignette
             </Label>
             <div className="grid grid-cols-2 gap-4">
@@ -657,5 +656,5 @@ export function ControlPanel({
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }
