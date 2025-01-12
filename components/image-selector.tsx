@@ -1,5 +1,5 @@
 import { useRef, useState } from "react"
-import { File, X } from "lucide-react"
+import { File as FileIcon, X } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -18,7 +18,9 @@ export function ImageSelector({
   onChange: (v: string | undefined) => void
   initialFileName?: string
 }) {
-  const [file, setFile] = useState<File>()
+  const [file, setFile] = useState<File | undefined>(
+    initialFileName ? new File([], initialFileName) : undefined
+  )
   const inputElement = useRef<HTMLInputElement>(null)
 
   function handleRemove() {
@@ -80,7 +82,7 @@ export function ImageSelector({
           }}
         >
           <DropdownMenuItem onSelect={handleSelect}>
-            <File className="mr-1 h-4 w-4" />
+            <FileIcon className="mr-1 h-4 w-4" />
             <span>Select a file</span>
           </DropdownMenuItem>
           <DropdownMenuItem onSelect={handleRemove}>
