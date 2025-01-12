@@ -23,7 +23,6 @@ const templates = [
 
 export default function TemplateSelector() {
   const template = useTemplateStore((state) => state)
-  console.log("🚀 ~ TemplateSelector ~ template:", template.name)
 
   return (
     <div className="space-y-4">
