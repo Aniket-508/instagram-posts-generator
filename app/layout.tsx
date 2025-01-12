@@ -7,12 +7,8 @@ import { Toaster } from "@/components/ui/sonner"
 
 import "./globals.css"
 
-import Link from "next/link"
 import { TemplateStoreProvider } from "@/providers/template-store-provider"
 
-import { BUY_ME_A_COFFEE_URL, PORTFOLIO_URL } from "@/lib/routes"
-import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
 import { ModeToggle } from "@/components/mode-toggle"
 
 const geistSans = localFont({
@@ -57,51 +53,18 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable}`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen bg-background py-16 text-foreground antialiased">
+      <body className="min-h-screen bg-background text-foreground antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <div className="absolute right-4 top-4">
+          <nav className="absolute right-4 top-4">
             <ModeToggle />
-          </div>
+          </nav>
 
-          <div className="mb-8 space-y-2 px-4 text-center">
-            <h1 className="text-4xl font-bold">The Tatva India Generator</h1>
-            <p className="text-gray-600 dark:text-gray-400">
-              Generate 👊 news / 😜 posts for your socials similar to{" "}
-              <Button asChild variant="link" className="px-0.5 py-0">
-                <Link
-                  href={"https://www.instagram.com/thetatvaindia/"}
-                  target="_blank"
-                >
-                  The Tatva India
-                </Link>
-              </Button>{" "}
-              with a few clicks
-            </p>
-            <div className="flex h-5 items-center justify-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
-              <Link
-                href={PORTFOLIO_URL}
-                target="_blank"
-                className="transition-colors hover:text-gray-900 dark:hover:text-gray-200"
-              >
-                made by aniket
-              </Link>
-              <Separator orientation="vertical" />
-              <Link
-                href={BUY_ME_A_COFFEE_URL}
-                target="_blank"
-                className="transition-colors hover:text-gray-900 dark:hover:text-gray-200"
-              >
-                buy aniket a coffee
-              </Link>
-            </div>
-          </div>
-
-          <main className="container mx-auto grid gap-4 p-4 lg:grid-cols-3">
+          <main className="container mx-auto min-h-[calc(100dvh-84px)] p-4">
             <TemplateStoreProvider>{children}</TemplateStoreProvider>
           </main>
         </ThemeProvider>
