@@ -31,10 +31,9 @@ export default function PreviewRenderer() {
 
     template.updatePreviewSvg(
       await satori(<TemplateComp template={template} />, {
-        // debug: process.env.NODE_ENV === "development",
+        debug: process.env.NODE_ENV === "development",
         width: template.canvas.width,
         height: template.canvas.height,
-        debug: true,
         fonts: fonts.map((f, i) => {
           return {
             name: f.family,
