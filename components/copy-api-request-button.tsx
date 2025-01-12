@@ -28,7 +28,7 @@ export function CopyApiRequestButton() {
     } else if (copyAs === "curl") {
       const curl = `curl -H "Content-Type: application/json" \\
   ${process.env.NEXT_PUBLIC_API_URL}/v1/images \\
-  -d '${JSON.stringify(requestBody, null, 2)}' > image.png`
+  -d '${JSON.stringify(requestBody, null, 2)}'`
 
       await navigator.clipboard.writeText(curl)
     }
