@@ -132,35 +132,8 @@ export function Form() {
                   }
                 >
                   <TextSettings
-                    fontFamily={params.highlightedText.fontFamily}
-                    fontSize={params.highlightedText.fontSize}
-                    fontWeight={params.highlightedText.fontWeight}
                     color={params.highlightedText.color}
                     bgColor={params.highlightedText.bgColor}
-                    onChangeFontFamily={(fontFamily) =>
-                      template.updateParams({
-                        highlightedText: {
-                          ...params.highlightedText,
-                          fontFamily,
-                        },
-                      })
-                    }
-                    onChangeFontSize={(fontSize) =>
-                      template.updateParams({
-                        highlightedText: {
-                          ...params.highlightedText,
-                          fontSize,
-                        },
-                      })
-                    }
-                    onChangeFontWeight={(fontWeight) =>
-                      template.updateParams({
-                        highlightedText: {
-                          ...params.highlightedText,
-                          fontWeight,
-                        },
-                      })
-                    }
                     onChangeColor={(color) =>
                       template.updateParams({
                         highlightedText: {

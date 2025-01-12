@@ -24,14 +24,12 @@ export const tatvaIndiaSchema = z.object({
         fontSize: textSchema.shape.fontSize.default(30),
       })
     ),
-    highlightedText: textSchema.merge(
-      z.object({
-        text: z.string(),
-        // apply defaults
-        bgColor: textSchema.shape.color.default("#777777"),
-        color: textSchema.shape.color.default("#ffffff"),
-      })
-    ),
+    highlightedText: z.object({
+      text: z.string(),
+      // apply defaults
+      bgColor: textSchema.shape.color.default("#777777"),
+      color: textSchema.shape.color.default("#ffffff"),
+    }),
     logo: imageSchema,
     position: z.nativeEnum(PositionOptions).default(PositionOptions.BOTTOM),
     socialMedia: z.object({
@@ -67,9 +65,6 @@ export const tatvaIndiaDefault: TatvaIndia = {
     },
     highlightedText: {
       text: "Vercel",
-      fontFamily: "inter",
-      fontWeight: 700,
-      fontSize: 52,
       bgColor: "#777777",
       color: "#ffffff",
     },
