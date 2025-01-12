@@ -1,7 +1,12 @@
 import React from "react"
 
 import { TatvaIndia } from "@/lib/templates/tatva-india"
-import { cn, getPositionClasses, getVignetteGradient } from "@/lib/utils"
+import {
+  cn,
+  getPositionClasses,
+  getSocialMediaRotation,
+  getVignetteGradient,
+} from "@/lib/utils"
 
 export const Template = ({ template }: { template: TatvaIndia }) => {
   const { title, description, highlightedText, logo, position, socialMedia } =
@@ -68,7 +73,7 @@ export const Template = ({ template }: { template: TatvaIndia }) => {
 
       {logo.url && (
         <img
-          tw={`absolute h-14 w-14 ${getPositionClasses(logo.position)}`}
+          tw={`absolute h-16 w-16 ${getPositionClasses(logo.position)}`}
           src={logo.url}
         />
       )}
@@ -104,12 +109,12 @@ export const Template = ({ template }: { template: TatvaIndia }) => {
         <span
           style={{
             color: socialMedia.color,
-            transform: "rotate(90deg)",
+            transform: getSocialMediaRotation(socialMedia.position),
           }}
           tw={cn(
             `absolute text-2xl`,
             socialMedia.position === "top-left" && "-left-2 top-14",
-            socialMedia.position === "top-right" && "-right-2 top-14",
+            socialMedia.position === "top-right" && "-right-2 top-14 ",
             socialMedia.position === "bottom-left" && "bottom-14 -left-2",
             socialMedia.position === "bottom-right" && "bottom-14 -right-2"
           )}

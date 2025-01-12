@@ -39,3 +39,14 @@ export const getVignetteGradient = (
   }
   return `linear-gradient(to top, ${color} 0%, transparent 70%)`
 }
+
+export const getSocialMediaRotation = (position: CornerPositionOptions) => {
+  if (
+    position === CornerPositionOptions.TOP_RIGHT ||
+    position === CornerPositionOptions.BOTTOM_RIGHT
+  ) {
+    return "rotate(270deg)"
+  } else {
+    return "rotate(90deg)"
+  }
+}
