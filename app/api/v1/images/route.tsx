@@ -1,7 +1,8 @@
 import { ImageResponse } from "next/og"
-import { type NextRequest } from "next/server"
+import { NextResponse, type NextRequest } from "next/server"
 
 import { getFontsFromTemplate, getFontUrl } from "@/lib/fonts"
+import { ratelimit } from "@/lib/rate-limit"
 import { templateSchema } from "@/lib/templates"
 import { templates } from "@/components/templates"
 
@@ -9,6 +10,21 @@ export const runtime = "edge"
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting
+    const ip = request.headers.get("x-forwarded-for") ?? "127.0.0.1"
+    const { success, limit, reset, remaining } = await ratelimit.limit(ip)
+
+    if (!success) {
+      return new NextResponse("Too Many Requests", {
+        status: 429,
+        headers: {
+          "X-RateLimit-Limit": limit.toString(),
+          "X-RateLimit-Remaining": remaining.toString(),
+          "X-RateLimit-Reset": reset.toString(),
+        },
+      })
+    }
+
     const body = await request.json()
 
     const template = templateSchema.parse(body)
