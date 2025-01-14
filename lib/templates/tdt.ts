@@ -51,7 +51,7 @@ export const tdtDefault: TDT = {
       color: "#ffffff",
     },
     background: {
-      color: "#1a1a1a",
+      color: "#2a2a2a",
     },
   },
   canvas: {
