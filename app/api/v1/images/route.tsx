@@ -41,6 +41,7 @@ export async function POST(request: NextRequest) {
 
     const { Template } = templates[template.name]
 
+    // @ts-expect-error: template is a valid template
     return new ImageResponse(<Template template={template} />, {
       width: template.canvas.width,
       height: template.canvas.height,
