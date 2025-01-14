@@ -19,6 +19,10 @@ const templates = [
     name: "tatva-india",
     skeleton: skeletons["tatva-india"],
   },
+  {
+    name: "tdt",
+    skeleton: skeletons.tdt,
+  },
 ]
 
 export default function TemplateSelector() {

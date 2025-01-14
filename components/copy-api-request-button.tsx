@@ -20,7 +20,6 @@ export function CopyApiRequestButton() {
     const requestBody = {
       name: template.name,
       params: template.params,
-      background: template.background,
       canvas: template.canvas,
     }
 

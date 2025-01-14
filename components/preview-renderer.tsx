@@ -58,10 +58,10 @@ export default function PreviewRenderer() {
 
   useEffect(() => {
     renderSvg()
-  }, [template.params, template.background, template.canvas])
+  }, [template.params, template.canvas])
 
   return (
-    <AspectRatio ratio={4 / 5}>
+    <AspectRatio ratio={4 / 3}>
       <Image
         alt="Preview"
         priority

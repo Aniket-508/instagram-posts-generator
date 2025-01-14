@@ -9,7 +9,6 @@ export type TemplateState = Template & {
 export type Actions = {
   setTemplate: (name: Template["name"]) => void
   updateParams: (params: Partial<Template["params"]>) => void
-  setBackground: (background: Template["background"]) => void
   updateCanvas: (canvas: Partial<Template["canvas"]>) => void
   updatePreviewSvg: (svg: string) => void
 }
@@ -40,19 +39,13 @@ export const createTemplateStore = (
             },
           }) as Partial<TemplateState>
       ),
-    setBackground: (background: Template["background"]) =>
-      set((state) => ({
-        background: {
-          ...background,
-        },
-      })),
-    updateCanvas: (canvas: Partial<Template["canvas"]>) =>
+    updateCanvas: (canvas) =>
       set((state) => ({
         canvas: {
           ...state.canvas,
           ...canvas,
         },
       })),
-    updatePreviewSvg: (svg: string) => set({ previewSvg: svg }),
+    updatePreviewSvg: (svg) => set({ previewSvg: svg }),
   }))
 }

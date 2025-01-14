@@ -14,6 +14,7 @@ export const carouselSchema = z.object({
 export type CarouselParams = z.infer<typeof carouselSchema>
 
 export const backgroundSchema = z.object({
+  color: z.string(),
   url: z.string().url(),
   vignette: vignetteSchema,
   carousel: carouselSchema,

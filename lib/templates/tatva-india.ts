@@ -11,19 +11,8 @@ import { textSchema } from "./elements/text"
 export const tatvaIndiaSchema = z.object({
   name: z.literal("tatva-india"),
   params: z.object({
-    title: textSchema.merge(
-      z.object({
-        // apply defaults
-        fontWeight: textSchema.shape.fontWeight.default(700),
-        fontSize: textSchema.shape.fontSize.default(52),
-      })
-    ),
-    description: textSchema.merge(
-      z.object({
-        // apply defaults
-        fontSize: textSchema.shape.fontSize.default(30),
-      })
-    ),
+    title: textSchema,
+    description: textSchema,
     highlightedText: z.object({
       text: z.string(),
       // apply defaults
@@ -40,8 +29,8 @@ export const tatvaIndiaSchema = z.object({
         .default(CornerPositionOptions.NONE),
       color: z.string().default("#ffffff"),
     }),
+    background: backgroundSchema.omit({ color: true }),
   }),
-  background: backgroundSchema,
   canvas: canvasSchema,
 })
 export type TatvaIndia = z.infer<typeof tatvaIndiaSchema>
@@ -78,16 +67,16 @@ export const tatvaIndiaDefault: TatvaIndia = {
       position: CornerPositionOptions.TOP_RIGHT,
       text: "vercel",
     },
-  },
-  background: {
-    url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30",
-    vignette: {
-      color: "#000000",
-      position: PositionOptions.BOTTOM,
-    },
-    carousel: {
-      color: "#ffffff",
-      position: CornerPositionOptions.NONE,
+    background: {
+      url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30",
+      vignette: {
+        color: "#000000",
+        position: PositionOptions.BOTTOM,
+      },
+      carousel: {
+        color: "#ffffff",
+        position: CornerPositionOptions.BOTTOM_RIGHT,
+      },
     },
   },
   canvas: {

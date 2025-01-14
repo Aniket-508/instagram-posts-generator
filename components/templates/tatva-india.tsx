@@ -52,11 +52,11 @@ export const Template = ({ template }: { template: TatvaIndia }) => {
           width: "100%",
           position: "absolute",
           inset: 0,
-          backgroundImage: `url('${template.background.url}')`,
+          backgroundImage: `url('${template.params.background.url}')`,
         }}
       ></div>
 
-      {template.background.vignette.position !== "none" && (
+      {template.params.background.vignette.position !== "none" && (
         <div
           style={{
             height: "100%",
@@ -64,8 +64,8 @@ export const Template = ({ template }: { template: TatvaIndia }) => {
             position: "absolute",
             inset: 0,
             background: getVignetteGradient(
-              template.background.vignette.position,
-              template.background.vignette.color
+              template.params.background.vignette.position,
+              template.params.background.vignette.color
             ),
           }}
         />
@@ -78,14 +78,14 @@ export const Template = ({ template }: { template: TatvaIndia }) => {
         />
       )}
 
-      {template.background.carousel.position !== "none" && (
+      {template.params.background.carousel.position !== "none" && (
         <div
           tw={`flex absolute h-24 w-24 ${getPositionClasses(
-            template.background.carousel.position,
+            template.params.background.carousel.position,
             "sm"
           )}`}
           style={{
-            color: template.background.carousel.color,
+            color: template.params.background.carousel.color,
           }}
         >
           <svg
