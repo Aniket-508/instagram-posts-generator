@@ -30,7 +30,7 @@ export default function PreviewRenderer() {
     const TemplateComp = templates[template.name].Template
 
     template.updatePreviewSvg(
-      // @ts-ignore
+      // @ts-expect-error
       await satori(<TemplateComp template={template} />, {
         debug: process.env.NODE_ENV === "development",
         width: template.canvas.width,
