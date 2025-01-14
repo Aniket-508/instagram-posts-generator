@@ -35,7 +35,7 @@ function TemplateSkeleton({
         target="_blank"
         onClick={(e) => e.stopPropagation()}
       >
-        {username}
+        @{username}
         <ExternalLink className="!size-3 sm:!size-3.5" />
       </Link>
     </div>
