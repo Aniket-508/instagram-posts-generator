@@ -41,217 +41,213 @@ export function Form() {
             Customize your image by changing the properties.
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <form>
-            <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="title">Title</Label>
-                <div className="flex space-x-2">
-                  <Input
-                    id="title"
-                    value={params.title.text}
-                    onChange={(e) =>
-                      template.updateParams({
-                        title: {
-                          ...params.title,
-                          text: e.target.value,
-                        },
-                      })
-                    }
-                  />
+        <CardContent className="space-y-4">
+          <div className="flex flex-col space-y-1.5">
+            <Label htmlFor="title">Title</Label>
+            <div className="flex space-x-2">
+              <Input
+                id="title"
+                value={params.title.text}
+                onChange={(e) =>
+                  template.updateParams({
+                    title: {
+                      ...params.title,
+                      text: e.target.value,
+                    },
+                  })
+                }
+              />
 
-                  <ResponsivePopover
-                    title="Font Settings"
-                    description="Customize the title font."
-                    trigger={
-                      <Button variant="outline" size="icon">
-                        <Settings2 className="h-4 w-4" />
-                      </Button>
-                    }
-                  >
-                    <TextSettings
-                      fontFamily={params.title.fontFamily}
-                      fontSize={params.title.fontSize}
-                      fontWeight={params.title.fontWeight}
-                      color={params.title.color}
-                      onChangeFontFamily={(fontFamily) =>
-                        template.updateParams({
-                          title: {
-                            ...params.title,
-                            fontFamily,
-                          },
-                        })
-                      }
-                      onChangeFontSize={(fontSize) =>
-                        template.updateParams({
-                          title: {
-                            ...params.title,
-                            fontSize,
-                          },
-                        })
-                      }
-                      onChangeFontWeight={(fontWeight) =>
-                        template.updateParams({
-                          title: {
-                            ...params.title,
-                            fontWeight,
-                          },
-                        })
-                      }
-                      onChangeColor={(color) =>
-                        template.updateParams({
-                          title: {
-                            ...params.title,
-                            color,
-                          },
-                        })
-                      }
-                    />
-                  </ResponsivePopover>
-                </div>
-              </div>
-
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="highlightText">Highlight Text</Label>
-                <div className="flex space-x-2">
-                  <Input
-                    id="highlightText"
-                    value={params.highlightedText.text}
-                    onChange={(e) =>
-                      template.updateParams({
-                        highlightedText: {
-                          ...params.highlightedText,
-                          text: e.target.value,
-                        },
-                      })
-                    }
-                  />
-
-                  <ResponsivePopover
-                    title="Font Settings"
-                    description="Customize the highlighted text font."
-                    trigger={
-                      <Button variant="outline" size="icon">
-                        <Settings2 className="h-4 w-4" />
-                      </Button>
-                    }
-                  >
-                    <TextSettings
-                      color={params.highlightedText.color}
-                      bgColor={params.highlightedText.bgColor}
-                      onChangeColor={(color) =>
-                        template.updateParams({
-                          highlightedText: {
-                            ...params.highlightedText,
-                            color,
-                          },
-                        })
-                      }
-                      onChangeBgColor={(color) =>
-                        template.updateParams({
-                          highlightedText: {
-                            ...params.highlightedText,
-                            bgColor: color,
-                          },
-                        })
-                      }
-                    />
-                  </ResponsivePopover>
-                </div>
-              </div>
-
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="description">Description</Label>
-                <div className="flex space-x-2">
-                  <Input
-                    id="description"
-                    value={params.description.text}
-                    onChange={(e) =>
-                      template.updateParams({
-                        description: {
-                          ...params.description,
-                          text: e.target.value,
-                        },
-                      })
-                    }
-                  />
-
-                  <ResponsivePopover
-                    title="Font Settings"
-                    description="Customize the description font."
-                    trigger={
-                      <Button variant="outline" size="icon">
-                        <Settings2 className="h-4 w-4" />
-                      </Button>
-                    }
-                  >
-                    <TextSettings
-                      fontFamily={params.description.fontFamily}
-                      fontSize={params.description.fontSize}
-                      fontWeight={params.description.fontWeight}
-                      color={params.description.color}
-                      onChangeFontFamily={(fontFamily) =>
-                        template.updateParams({
-                          description: {
-                            ...params.description,
-                            fontFamily,
-                          },
-                        })
-                      }
-                      onChangeFontSize={(fontSize) =>
-                        template.updateParams({
-                          description: {
-                            ...params.description,
-                            fontSize,
-                          },
-                        })
-                      }
-                      onChangeFontWeight={(fontWeight) =>
-                        template.updateParams({
-                          description: {
-                            ...params.description,
-                            fontWeight,
-                          },
-                        })
-                      }
-                      onChangeColor={(color) =>
-                        template.updateParams({
-                          description: {
-                            ...params.description,
-                            color,
-                          },
-                        })
-                      }
-                    />
-                  </ResponsivePopover>
-                </div>
-              </div>
-
-              <div className="flex flex-col space-y-1.5">
-                <Label>Position</Label>
-                <Select
-                  value={params.position}
-                  onValueChange={(val: PositionOptions) =>
+              <ResponsivePopover
+                title="Font Settings"
+                description="Customize the title font."
+                trigger={
+                  <Button variant="outline" size="icon">
+                    <Settings2 className="h-4 w-4" />
+                  </Button>
+                }
+              >
+                <TextSettings
+                  fontFamily={params.title.fontFamily}
+                  fontSize={params.title.fontSize}
+                  fontWeight={params.title.fontWeight}
+                  color={params.title.color}
+                  onChangeFontFamily={(fontFamily) =>
                     template.updateParams({
-                      ...params,
-                      position: val,
+                      title: {
+                        ...params.title,
+                        fontFamily,
+                      },
                     })
                   }
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Position" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.values(PositionOptions).map((pos) => (
-                      <SelectItem key={pos} value={pos}>
-                        {pos}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+                  onChangeFontSize={(fontSize) =>
+                    template.updateParams({
+                      title: {
+                        ...params.title,
+                        fontSize,
+                      },
+                    })
+                  }
+                  onChangeFontWeight={(fontWeight) =>
+                    template.updateParams({
+                      title: {
+                        ...params.title,
+                        fontWeight,
+                      },
+                    })
+                  }
+                  onChangeColor={(color) =>
+                    template.updateParams({
+                      title: {
+                        ...params.title,
+                        color,
+                      },
+                    })
+                  }
+                />
+              </ResponsivePopover>
             </div>
-          </form>
+          </div>
+
+          <div className="flex flex-col space-y-1.5">
+            <Label htmlFor="highlightText">Highlight Text</Label>
+            <div className="flex space-x-2">
+              <Input
+                id="highlightText"
+                value={params.highlightedText.text}
+                onChange={(e) =>
+                  template.updateParams({
+                    highlightedText: {
+                      ...params.highlightedText,
+                      text: e.target.value,
+                    },
+                  })
+                }
+              />
+
+              <ResponsivePopover
+                title="Font Settings"
+                description="Customize the highlighted text font."
+                trigger={
+                  <Button variant="outline" size="icon">
+                    <Settings2 className="h-4 w-4" />
+                  </Button>
+                }
+              >
+                <TextSettings
+                  color={params.highlightedText.color}
+                  bgColor={params.highlightedText.bgColor}
+                  onChangeColor={(color) =>
+                    template.updateParams({
+                      highlightedText: {
+                        ...params.highlightedText,
+                        color,
+                      },
+                    })
+                  }
+                  onChangeBgColor={(color) =>
+                    template.updateParams({
+                      highlightedText: {
+                        ...params.highlightedText,
+                        bgColor: color,
+                      },
+                    })
+                  }
+                />
+              </ResponsivePopover>
+            </div>
+          </div>
+
+          <div className="flex flex-col space-y-1.5">
+            <Label htmlFor="description">Description</Label>
+            <div className="flex space-x-2">
+              <Input
+                id="description"
+                value={params.description.text}
+                onChange={(e) =>
+                  template.updateParams({
+                    description: {
+                      ...params.description,
+                      text: e.target.value,
+                    },
+                  })
+                }
+              />
+
+              <ResponsivePopover
+                title="Font Settings"
+                description="Customize the description font."
+                trigger={
+                  <Button variant="outline" size="icon">
+                    <Settings2 className="h-4 w-4" />
+                  </Button>
+                }
+              >
+                <TextSettings
+                  fontFamily={params.description.fontFamily}
+                  fontSize={params.description.fontSize}
+                  fontWeight={params.description.fontWeight}
+                  color={params.description.color}
+                  onChangeFontFamily={(fontFamily) =>
+                    template.updateParams({
+                      description: {
+                        ...params.description,
+                        fontFamily,
+                      },
+                    })
+                  }
+                  onChangeFontSize={(fontSize) =>
+                    template.updateParams({
+                      description: {
+                        ...params.description,
+                        fontSize,
+                      },
+                    })
+                  }
+                  onChangeFontWeight={(fontWeight) =>
+                    template.updateParams({
+                      description: {
+                        ...params.description,
+                        fontWeight,
+                      },
+                    })
+                  }
+                  onChangeColor={(color) =>
+                    template.updateParams({
+                      description: {
+                        ...params.description,
+                        color,
+                      },
+                    })
+                  }
+                />
+              </ResponsivePopover>
+            </div>
+          </div>
+
+          <div className="flex flex-col space-y-1.5">
+            <Label>Position</Label>
+            <Select
+              value={params.position}
+              onValueChange={(val: PositionOptions) =>
+                template.updateParams({
+                  ...params,
+                  position: val,
+                })
+              }
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Position" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.values(PositionOptions).map((pos) => (
+                  <SelectItem key={pos} value={pos}>
+                    {pos}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </CardContent>
       </Card>
       <Card>
@@ -262,7 +258,7 @@ export function Form() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid w-full max-w-sm items-center gap-1.5">
+          <div className="flex flex-col space-y-1.5">
             <Label htmlFor="logo">Logo</Label>
             <div className="flex">
               <ImageSelector

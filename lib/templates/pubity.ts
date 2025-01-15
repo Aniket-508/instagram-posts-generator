@@ -27,13 +27,15 @@ export const pubityDefault: Pubity = {
     title: {
       text: "This is lucy and she has a selfie of herself on her ear",
       fontFamily: "inter",
-      fontWeight: 300,
+      fontWeight: 800,
       fontSize: 80,
       color: "#ffffff",
     },
     logo: {
       url: absoluteUrl("/vercel.svg"),
-      position: PositionOptions.BOTTOM,
+      position: PositionOptions.TOP,
+      width: 32,
+      height: 32,
     },
     background: {
       url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT7r8aJPdkPbofitMy0tgXy27fZpp3ow0HAw&s",
@@ -45,6 +47,6 @@ export const pubityDefault: Pubity = {
   },
   canvas: {
     width: 1080,
-    height: 1080,
+    height: 1350,
   },
 }

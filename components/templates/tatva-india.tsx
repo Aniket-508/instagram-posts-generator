@@ -9,8 +9,15 @@ import {
 } from "@/lib/utils"
 
 export const Template = ({ template }: { template: TatvaIndia }) => {
-  const { title, description, highlightedText, logo, position, socialMedia } =
-    template.params
+  const {
+    title,
+    description,
+    background,
+    highlightedText,
+    logo,
+    position,
+    socialMedia,
+  } = template.params
 
   const renderHighlightedTitle = () => {
     if (!highlightedText.text) return title.text
@@ -52,11 +59,13 @@ export const Template = ({ template }: { template: TatvaIndia }) => {
           width: "100%",
           position: "absolute",
           inset: 0,
-          backgroundImage: `url('${template.params.background.url}')`,
+          backgroundImage: `url('${background.url}')`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "100% 100%",
         }}
       ></div>
 
-      {template.params.background.vignette.position !== "none" && (
+      {background.vignette.position !== "none" && (
         <div
           style={{
             height: "100%",
@@ -64,8 +73,8 @@ export const Template = ({ template }: { template: TatvaIndia }) => {
             position: "absolute",
             inset: 0,
             background: getVignetteGradient(
-              template.params.background.vignette.position,
-              template.params.background.vignette.color
+              background.vignette.position,
+              background.vignette.color
             ),
           }}
         />
@@ -73,19 +82,21 @@ export const Template = ({ template }: { template: TatvaIndia }) => {
 
       {logo.url && (
         <img
-          tw={`absolute h-16 w-16 ${getPositionClasses(logo.position)}`}
+          tw={`absolute ${getPositionClasses(logo.position)}`}
           src={logo.url}
+          width={logo.width}
+          height={logo.height}
         />
       )}
 
-      {template.params.background.carousel.position !== "none" && (
+      {background.carousel.position !== "none" && (
         <div
           tw={`flex absolute h-24 w-24 ${getPositionClasses(
-            template.params.background.carousel.position,
+            background.carousel.position,
             "sm"
           )}`}
           style={{
-            color: template.params.background.carousel.color,
+            color: background.carousel.color,
           }}
         >
           <svg

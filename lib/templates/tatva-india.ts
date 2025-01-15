@@ -16,8 +16,8 @@ export const tatvaIndiaSchema = z.object({
     highlightedText: z.object({
       text: z.string(),
       // apply defaults
-      bgColor: textSchema.shape.color.default("#777777"),
-      color: textSchema.shape.color.default("#ffffff"),
+      bgColor: textSchema.shape.color,
+      color: textSchema.shape.color,
     }),
     logo: imageSchema,
     position: z.nativeEnum(PositionOptions).default(PositionOptions.BOTTOM),
@@ -27,7 +27,7 @@ export const tatvaIndiaSchema = z.object({
       position: z
         .nativeEnum(CornerPositionOptions)
         .default(CornerPositionOptions.NONE),
-      color: z.string().default("#ffffff"),
+      color: z.string(),
     }),
     background: backgroundSchema.omit({ color: true }),
   }),
@@ -60,6 +60,8 @@ export const tatvaIndiaDefault: TatvaIndia = {
     logo: {
       url: absoluteUrl("/vercel.svg"),
       position: CornerPositionOptions.BOTTOM_LEFT,
+      width: 64,
+      height: 64,
     },
     position: PositionOptions.BOTTOM,
     socialMedia: {
