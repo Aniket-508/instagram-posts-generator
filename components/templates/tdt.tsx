@@ -1,5 +1,3 @@
-import React from "react"
-
 import { TDT } from "@/lib/templates/tdt"
 
 export const Template = ({ template }: { template: TDT }) => {
@@ -78,7 +76,7 @@ export const Template = ({ template }: { template: TDT }) => {
               marginLeft: "0.5rem",
             }}
           >
-            [{username.text}]
+            {username.text}
           </span>
         </div>
       )}

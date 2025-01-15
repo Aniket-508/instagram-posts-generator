@@ -7,7 +7,7 @@ export const cn = (...inputs: ClassValue[]) => {
 }
 
 export const getPositionClasses = (
-  position: CornerPositionOptions,
+  position: `${CornerPositionOptions | PositionOptions}`,
   fromY: "sm" | "base" = "base",
   fromX: "sm" | "base" = "base"
 ) => {

@@ -62,7 +62,17 @@ function TerriblyDankTales() {
   )
 }
 
+function GAG() {
+  return <TemplateSkeleton name="9GAG" username="9gag" img="/9gag.jpg" />
+}
+
+function Pubity() {
+  return <TemplateSkeleton name="Pubity" username="pubity" img="/pubity.jpg" />
+}
+
 export const skeletons = {
   "tatva-india": TatvaIndia,
   tdt: TerriblyDankTales,
+  "9gag": GAG,
+  pubity: Pubity,
 }

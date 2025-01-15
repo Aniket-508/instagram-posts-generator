@@ -11,3 +11,9 @@ export enum CornerPositionOptions {
   BOTTOM_RIGHT = "bottom-right",
   NONE = "none",
 }
+
+export enum AlignmentOptions {
+  LEFT = "flex-start",
+  CENTER = "center",
+  RIGHT = "flex-end",
+}

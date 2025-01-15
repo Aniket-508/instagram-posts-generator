@@ -16,6 +16,14 @@ import { skeletons } from "@/components/template-skeletons"
 
 const templates = [
   {
+    name: "9gag",
+    skeleton: skeletons["9gag"],
+  },
+  {
+    name: "pubity",
+    skeleton: skeletons["pubity"],
+  },
+  {
     name: "tatva-india",
     skeleton: skeletons["tatva-india"],
   },

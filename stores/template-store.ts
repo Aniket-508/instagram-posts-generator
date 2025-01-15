@@ -14,7 +14,7 @@ export type Actions = {
 }
 
 export const defaultInitState: TemplateState = {
-  ...templateDefaults["tatva-india"],
+  ...templateDefaults["9gag"],
   previewSvg: null,
 }
 

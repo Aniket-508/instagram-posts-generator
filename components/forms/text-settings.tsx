@@ -1,3 +1,5 @@
+import { AlignmentOptions } from "@/types"
+
 import {
   FontFamily,
   FontWeight,
@@ -27,6 +29,8 @@ interface TextSettingsProps {
   onChangeColor: (color: string) => void
   bgColor?: string
   onChangeBgColor?: (color: string) => void
+  alignment?: AlignmentOptions
+  onChangeAlignment?: (alignment: AlignmentOptions) => void
   className?: string
 }
 
@@ -41,6 +45,8 @@ export function TextSettings({
   onChangeColor,
   bgColor,
   onChangeBgColor,
+  alignment,
+  onChangeAlignment,
   className,
 }: TextSettingsProps) {
   return (
@@ -111,9 +117,32 @@ export function TextSettings({
           </div>
         )}
 
+        {alignment && onChangeAlignment && (
+          <div className="grid grid-cols-3 items-center gap-4">
+            <Label htmlFor="alignment">Alignment</Label>
+            <Select
+              value={alignment}
+              onValueChange={(v: AlignmentOptions) => onChangeAlignment(v)}
+            >
+              <SelectTrigger id="alignment" className="col-span-2 h-8">
+                <SelectValue placeholder="Select a weight" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  {Object.values(AlignmentOptions).map((alignment) => (
+                    <SelectItem key={alignment} value={alignment}>
+                      {alignment}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+        )}
+
         {bgColor && onChangeBgColor && (
           <div className="grid grid-cols-3 items-center gap-4">
-            <Label htmlFor="bg-color">Bg Color</Label>
+            <Label htmlFor="bg-color">Bg color</Label>
             <Input
               id="bg-color"
               type="color"
@@ -125,7 +154,7 @@ export function TextSettings({
         )}
 
         <div className="grid grid-cols-3 items-center gap-4">
-          <Label htmlFor="text-color">Text Color</Label>
+          <Label htmlFor="text-color">Text color</Label>
           <Input
             id="text-color"
             type="color"
