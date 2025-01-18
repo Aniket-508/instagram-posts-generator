@@ -27,7 +27,7 @@ export const gagDefault: GAG = {
   name: "9gag",
   params: {
     title: {
-      text: "How I look, when I'm getting it tonight",
+      text: "Your post title goes here",
       fontFamily: "inter",
       fontWeight: 600,
       fontSize: 52,

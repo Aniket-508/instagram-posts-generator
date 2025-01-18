@@ -136,7 +136,7 @@ export const Template = ({ template }: { template: TatvaIndia }) => {
 
       <div
         tw={cn(
-          `flex flex-col items-center absolute p-8`,
+          `flex flex-col items-center absolute p-8 w-full`,
           position === "top" && "top-0 pt-48",
           position === "bottom" && "bottom-0 pb-48"
         )}

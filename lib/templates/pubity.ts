@@ -25,7 +25,7 @@ export const pubityDefault: Pubity = {
   name: "pubity",
   params: {
     title: {
-      text: "This is lucy and she has a selfie of herself on her ear",
+      text: "Your post title goes here",
       fontFamily: "inter",
       fontWeight: 800,
       fontSize: 80,

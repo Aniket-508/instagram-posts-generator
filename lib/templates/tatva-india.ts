@@ -39,21 +39,21 @@ export const tatvaIndiaDefault: TatvaIndia = {
   name: "tatva-india",
   params: {
     title: {
-      text: "Vercel: Your Complete Platform for the Web",
+      text: "Highlight: Your post title goes here",
       fontFamily: "inter",
       fontWeight: 700,
       fontSize: 52,
       color: "#ffffff",
     },
     description: {
-      text: "Build and deploy your web apps with the best developer experience.",
+      text: "Your post description goes here",
       fontFamily: "inter",
       fontWeight: 400,
       fontSize: 30,
       color: "#ffffff",
     },
     highlightedText: {
-      text: "Vercel",
+      text: "Highlight",
       bgColor: "#777777",
       color: "#ffffff",
     },
@@ -67,7 +67,7 @@ export const tatvaIndiaDefault: TatvaIndia = {
     socialMedia: {
       color: "#ffffff",
       position: CornerPositionOptions.TOP_RIGHT,
-      text: "vercel",
+      text: "socials",
     },
     background: {
       url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30",
