@@ -24,7 +24,7 @@ function TemplateSkeleton({
         alt={name}
         width={isDesktop ? 32 : 16}
         height={isDesktop ? 32 : 16}
-        className="rounded-full"
+        className="rounded-full border"
       />
       <Link
         href={`https://www.instagram.com/${username}/`}
@@ -71,8 +71,8 @@ function Pubity() {
 }
 
 export const skeletons = {
-  "tatva-india": TatvaIndia,
-  tdt: TerriblyDankTales,
+  thetatvaindia: TatvaIndia,
+  tdtinsta: TerriblyDankTales,
   "9gag": GAG,
   pubity: Pubity,
 }

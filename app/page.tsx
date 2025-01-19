@@ -12,15 +12,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CopyApiRequestButton } from "@/components/copy-api-request-button"
 import TemplateForm from "@/components/forms/template-form"
 import PreviewRenderer from "@/components/preview-renderer"
-import ProjectDetails from "@/components/project-details"
 import SaveImageButton from "@/components/save-image-button"
 import TemplateSelector from "@/components/template-selector"
 
 export default function Home() {
   return (
-    <div className="space-y-4 py-16">
-      <ProjectDetails />
-
+    <div className="space-y-4">
       <TemplateSelector />
 
       <Separator />

@@ -24,12 +24,12 @@ const templates = [
     skeleton: skeletons["pubity"],
   },
   {
-    name: "tatva-india",
-    skeleton: skeletons["tatva-india"],
+    name: "thetatvaindia",
+    skeleton: skeletons["thetatvaindia"],
   },
   {
-    name: "tdt",
-    skeleton: skeletons.tdt,
+    name: "tdtinsta",
+    skeleton: skeletons.tdtinsta,
   },
 ]
 

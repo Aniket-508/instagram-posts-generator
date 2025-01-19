@@ -6,8 +6,8 @@ import * as tatvaIndia from "./tatva-india"
 import * as tdt from "./tdt"
 
 export const templateNameSchema = z.union([
-  z.literal("tatva-india"),
-  z.literal("tdt"),
+  z.literal("thetatvaindia"),
+  z.literal("tdtinsta"),
   z.literal("9gag"),
   z.literal("pubity"),
 ])
@@ -22,8 +22,8 @@ export const templateSchema = z.discriminatedUnion("name", [
 export type Template = z.infer<typeof templateSchema>
 
 export const templateDefaults: Record<TemplateName, Template> = {
-  "tatva-india": tatvaIndia.tatvaIndiaDefault,
-  tdt: tdt.tdtDefault,
+  thetatvaindia: tatvaIndia.tatvaIndiaDefault,
+  tdtinsta: tdt.tdtDefault,
   "9gag": gag.gagDefault,
   pubity: pubity.pubityDefault,
 }

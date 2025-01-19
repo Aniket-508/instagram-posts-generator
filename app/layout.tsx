@@ -10,7 +10,7 @@ import "./globals.css"
 import Script from "next/script"
 import { TemplateStoreProvider } from "@/providers/template-store-provider"
 
-import { ModeToggle } from "@/components/mode-toggle"
+import Navbar from "@/components/navbar"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -59,11 +59,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <nav className="absolute right-4 top-4">
-            <ModeToggle />
-          </nav>
+          <Navbar />
 
-          <main className="container mx-auto min-h-[calc(100dvh-84px)] p-4">
+          <main className="container mx-auto min-h-screen p-4">
             <TemplateStoreProvider>{children}</TemplateStoreProvider>
           </main>
         </ThemeProvider>

@@ -5,7 +5,7 @@ import { canvasSchema } from "./elements/canvas"
 import { textSchema } from "./elements/text"
 
 export const tdtSchema = z.object({
-  name: z.literal("tdt"),
+  name: z.literal("tdtinsta"),
   params: z.object({
     title: textSchema,
     username: textSchema,
@@ -20,7 +20,7 @@ export const tdtSchema = z.object({
 export type TDT = z.infer<typeof tdtSchema>
 
 export const tdtDefault: TDT = {
-  name: "tdt",
+  name: "tdtinsta",
   params: {
     title: {
       text: "Basically dating is about watching your favourite person turn into a life lesson",

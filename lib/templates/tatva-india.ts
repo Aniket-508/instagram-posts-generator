@@ -9,7 +9,7 @@ import { imageSchema } from "./elements/image"
 import { textSchema } from "./elements/text"
 
 export const tatvaIndiaSchema = z.object({
-  name: z.literal("tatva-india"),
+  name: z.literal("thetatvaindia"),
   params: z.object({
     title: textSchema,
     description: textSchema,
@@ -36,7 +36,7 @@ export const tatvaIndiaSchema = z.object({
 export type TatvaIndia = z.infer<typeof tatvaIndiaSchema>
 
 export const tatvaIndiaDefault: TatvaIndia = {
-  name: "tatva-india",
+  name: "thetatvaindia",
   params: {
     title: {
       text: "Highlight: Your post title goes here",
