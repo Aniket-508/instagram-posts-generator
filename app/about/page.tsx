@@ -10,7 +10,7 @@ export default function About() {
     <div className="space-y-4">
       <h1 className="text-2xl font-bold">About {MAIN_METADATA.TITLE}</h1>
       <h2 className="text-lg">{MAIN_METADATA.DESCRIPTION}</h2>
-      <p className="prose max-w-full text-muted-foreground">
+      <p className="prose max-w-full text-muted-foreground dark:prose-invert">
         The developer behind this project is{" "}
         <Link href={PORTFOLIO_URL} target="_blank">
           Aniket
