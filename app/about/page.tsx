@@ -15,13 +15,13 @@ export default function About() {
         <Link href={PORTFOLIO_URL} target="_blank">
           Aniket
         </Link>
-        , who’s likely lost in a sea of code, tackling yet another side project.
-        If you’d like to make his day a little brighter (and his coffee cup a
+        , who's likely lost in a sea of code, tackling yet another side project.
+        If you'd like to make his day a little brighter (and his coffee cup a
         little fuller), feel free to{" "}
         <Link href={BUY_ME_A_COFFEE_URL} target="_blank">
           send some caffeine
         </Link>{" "}
-        his way—it’s the perfect way to let him know his hard work is
+        his way—it's the perfect way to let him know his hard work is
         appreciated!
       </p>
       <div className="space-y-4 rounded border bg-accent p-6">
