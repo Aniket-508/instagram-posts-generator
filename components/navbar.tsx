@@ -10,7 +10,7 @@ export default function Navbar() {
     <nav className="container mx-auto flex items-center justify-between space-x-4 p-4">
       <Link className="flex items-center space-x-2" href="/">
         <Image unoptimized src="/icon.svg" alt="Logo" width={32} height={32} />
-        <span className="text-lg font-semibold text-primary">
+        <span className="hidden text-lg font-semibold text-primary sm:inline">
           Instagram Posts Generator
         </span>
       </Link>
