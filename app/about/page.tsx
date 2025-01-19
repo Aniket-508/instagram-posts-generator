@@ -15,13 +15,13 @@ export default function About() {
         <Link href={PORTFOLIO_URL} target="_blank">
           Aniket
         </Link>
-        , who's likely lost in a sea of code, tackling yet another side project.
-        If you'd like to make his day a little brighter (and his coffee cup a
-        little fuller), feel free to{" "}
+        , who&apos;s likely lost in a sea of code, tackling yet another side
+        project. If you&apos;d like to make his day a little brighter (and his
+        coffee cup a little fuller), feel free to{" "}
         <Link href={BUY_ME_A_COFFEE_URL} target="_blank">
           send some caffeine
         </Link>{" "}
-        his way—it's the perfect way to let him know his hard work is
+        his way—it&apos;s the perfect way to let him know his hard work is
         appreciated!
       </p>
       <div className="space-y-4 rounded border bg-accent p-6">
@@ -36,9 +36,9 @@ export default function About() {
           <h2 className="text-xl font-semibold">Want to contribute?</h2>
         </div>
         <p className="text-muted-foreground">
-          We're always looking for ways to improve this project. If you have
-          ideas for more templates or want to contribute, check out our GitHub
-          repository!
+          We&apos;re always looking for ways to improve this project. If you
+          have ideas for more templates or want to contribute, check out our
+          GitHub repository!
         </p>
         <Button className="rounded-full">
           <Link
