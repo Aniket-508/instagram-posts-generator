@@ -15,6 +15,10 @@ Generate 👊 news / 😜 posts for your socials with templates from popular ins
 
 There is a rate limit of **100 requests per minute**, per IP address. If you exceed the rate limit, the API will respond with a `429` error.
 
+## API Collection
+
+[<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://app.getpostman.com/run-collection/17712478-a36cee5c-0459-4759-ad59-acbc3fcee44c?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D17712478-a36cee5c-0459-4759-ad59-acbc3fcee44c%26entityType%3Dcollection%26workspaceId%3D2eca95b8-0d2d-4c16-a95d-d1a817cdf82a)
+
 ## Getting Started
 
 ### Prerequisites
