@@ -102,7 +102,7 @@ export function TextSettings({
           </div>
         )}
 
-        {!!fontSize && onChangeFontSize && (
+        {fontSize !== undefined && onChangeFontSize && (
           <div className="grid grid-cols-3 items-center gap-4">
             <Label htmlFor="font-size">Font size</Label>
             <Input
