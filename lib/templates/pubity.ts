@@ -38,7 +38,7 @@ export const pubityDefault: Pubity = {
       height: 32,
     },
     background: {
-      url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT7r8aJPdkPbofitMy0tgXy27fZpp3ow0HAw&s",
+      url: absoluteUrl("/pubity-bg.jpeg"),
       carousel: {
         color: "#ffffff",
         position: CornerPositionOptions.TOP_RIGHT,

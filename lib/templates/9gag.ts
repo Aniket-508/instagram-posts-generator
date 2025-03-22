@@ -1,6 +1,7 @@
 import { AlignmentOptions, PositionOptions } from "@/types"
 import { z } from "zod"
 
+import { absoluteUrl } from "../url"
 import { backgroundSchema } from "./elements/background"
 import { canvasSchema } from "./elements/canvas"
 import { textSchema } from "./elements/text"
@@ -36,7 +37,7 @@ export const gagDefault: GAG = {
       alignment: AlignmentOptions.CENTER,
     },
     background: {
-      url: "https://hoor72.com/assets/akshay-kumar-smile-meme.png",
+      url: absoluteUrl("/9gag-bg.png"),
     },
     position: PositionOptions.TOP,
   },

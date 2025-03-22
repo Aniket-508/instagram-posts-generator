@@ -70,7 +70,7 @@ export const tatvaIndiaDefault: TatvaIndia = {
       text: "socials",
     },
     background: {
-      url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30",
+      url: absoluteUrl("/tatva-bg.jpeg"),
       vignette: {
         color: "#000000",
         position: PositionOptions.BOTTOM,
