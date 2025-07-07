@@ -9,3 +9,13 @@ export const API_BASE_URL = `${BASE_URL}/api`
 export const PORTFOLIO_URL = "https://aniket-pawar.vercel.app/"
 
 export const BUY_ME_A_COFFEE_URL = "https://www.buymeacoffee.com/aniketpawar508"
+
+export const ROUTES = {
+  HOME: "/",
+  LOGIN: "/login",
+  SIGNUP: "/signup",
+  DASHBOARD: "/dashboard",
+  DOCS: "/docs",
+  ABOUT: "/about",
+  FEATURES: "/#features",
+}

@@ -10,8 +10,6 @@ import "./globals.css"
 import Script from "next/script"
 import { TemplateStoreProvider } from "@/providers/template-store-provider"
 
-import Navbar from "@/components/navbar"
-
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -51,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -59,11 +57,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-
-          <main className="container mx-auto min-h-screen p-4">
-            <TemplateStoreProvider>{children}</TemplateStoreProvider>
-          </main>
+          <TemplateStoreProvider>{children}</TemplateStoreProvider>
         </ThemeProvider>
         <Toaster />
       </body>

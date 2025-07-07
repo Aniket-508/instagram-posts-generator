@@ -30,7 +30,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # env files (can opt-in for committing if needed)
-.env*.local
+.env*
+!.env.example
 
 # vercel
 .vercel
@@ -38,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# prisma
+prisma/migrations
+generated/prisma

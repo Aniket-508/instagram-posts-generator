@@ -75,3 +75,7 @@ code {
     @apply bg-background text-foreground;
   }
 }
+
+.view-container {
+  @apply mx-auto w-full max-w-[1100px];
+}
