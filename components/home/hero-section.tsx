@@ -2,12 +2,13 @@ import React from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, ChevronRight } from "lucide-react"
+import { Variants } from "motion/react"
 
 import { AnimatedGroup } from "@/components/ui/animated-group"
 import { Button } from "@/components/ui/button"
 import { TextEffect } from "@/components/ui/text-effect"
 
-const transitionVariants = {
+const transitionVariants: { item: Variants } = {
   item: {
     hidden: {
       opacity: 0,
