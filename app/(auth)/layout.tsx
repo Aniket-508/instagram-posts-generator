@@ -9,7 +9,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-zinc-50 px-4 py-16 dark:bg-transparent md:py-32">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-neutral-50 px-4 py-16 dark:bg-transparent md:py-32">
       {children}
     </div>
   )

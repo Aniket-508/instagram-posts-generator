@@ -11,7 +11,7 @@ export default function HomeLayout({
   return (
     <>
       <HeroHeader userEmail={userEmail} />
-      <main className="view-container relative mt-[48px] grow border-x p-4 lg:mt-[66px]">
+      <main className="view-container relative mt-[48px] grow border-x lg:mt-[66px]">
         <GridLines />
         {children}
       </main>

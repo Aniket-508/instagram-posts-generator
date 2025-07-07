@@ -82,12 +82,12 @@ export default function HeroSection() {
               <AnimatedGroup variants={transitionVariants}>
                 <Link
                   href="#link"
-                  className="group mx-auto flex w-fit items-center gap-4 rounded-full border bg-muted p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 hover:bg-background dark:border-t-white/5 dark:shadow-zinc-950 dark:hover:border-t-border"
+                  className="group mx-auto flex w-fit items-center gap-4 rounded-full border bg-muted p-1 pl-4 shadow-md shadow-neutral-950/5 transition-colors duration-300 hover:bg-background dark:border-t-white/5 dark:shadow-neutral-950 dark:hover:border-t-border"
                 >
                   <span className="text-sm text-foreground">
                     Introducing Support for AI Models
                   </span>
-                  <span className="block h-4 w-0.5 border-l bg-white dark:border-background dark:bg-zinc-700"></span>
+                  <span className="block h-4 w-0.5 border-l bg-white dark:border-background dark:bg-neutral-700"></span>
 
                   <div className="size-6 overflow-hidden rounded-full bg-background duration-500 group-hover:bg-muted">
                     <div className="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
@@ -183,7 +183,7 @@ export default function HeroSection() {
                 aria-hidden
                 className="bg-linear-to-b absolute inset-0 z-10 from-transparent from-35% to-background"
               />
-              <div className="inset-shadow-2xs dark:inset-shadow-white/20 relative mx-auto max-w-6xl overflow-hidden rounded-2xl border bg-background p-4 shadow-lg shadow-zinc-950/15 ring-1 ring-background">
+              <div className="inset-shadow-2xs dark:inset-shadow-white/20 relative mx-auto max-w-6xl overflow-hidden rounded-2xl border bg-background p-4 shadow-lg shadow-neutral-950/15 ring-1 ring-background">
                 <Image
                   className="aspect-15/8 relative hidden rounded-2xl bg-background dark:block"
                   src="/mail2.png"

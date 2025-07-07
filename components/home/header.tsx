@@ -54,7 +54,7 @@ export const HeroHeader = ({ userEmail }: BetterAuthProps) => {
           </ul>
         </div>
 
-        <div className="mb-3 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border bg-background p-6 shadow-2xl shadow-zinc-300/20 group-data-[state=active]:block dark:shadow-none md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none lg:group-data-[state=active]:flex dark:lg:bg-transparent">
+        <div className="mb-3 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border bg-background p-6 shadow-2xl shadow-neutral-300/20 group-data-[state=active]:block dark:shadow-none md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none lg:group-data-[state=active]:flex dark:lg:bg-transparent">
           <div className="lg:hidden">
             <ul className="space-y-6 text-base">
               {menuItems.map((item, index) => (

@@ -5,6 +5,7 @@ import {
 } from "@/lib/docs"
 import { API_BASE_URL } from "@/lib/routes"
 import { Badge } from "@/components/ui/badge"
+import PageHero from "@/components/common/page-hero"
 
 function FieldList({ fields }: { fields: Record<string, string | number> }) {
   return (
@@ -38,46 +39,49 @@ function DocsSection({
 
 export default function About() {
   return (
-    <div className="space-y-4">
-      <h1 className="text-2xl font-bold">API Documentation</h1>
-      <div className="space-y-8">
-        <DocsSection title="Base URL">
-          <div className="rounded border bg-accent p-2">
-            <code className="text-accent-foreground">{API_BASE_URL}</code>
-          </div>
-        </DocsSection>
-        <DocsSection title="Rate Limiting">
-          <p className="mb-2 text-muted-foreground">
-            All API endpoints are rate-limited to 100 requests per minute per IP
-            address. Rate limit information is included in the response headers:
-          </p>
-          <FieldList fields={RATE_LIMITING_HEADERS} />
-        </DocsSection>
-        <DocsSection title="Endpoints">
-          <div className="rounded border bg-accent p-2 text-accent-foreground">
-            <div className="flex items-center gap-2">
-              <Badge size="lg" variant={"destructive"}>
-                POST
-              </Badge>
-              <code>/v1/images</code>
+    <section id="docs-hero">
+      <PageHero route="Docs" title="API Documentation of OpenPosts" />
+      <div className="space-y-8 px-3 py-8 md:px-4">
+        <div className="space-y-8">
+          <DocsSection title="Base URL">
+            <div className="rounded border bg-accent p-2">
+              <code className="text-accent-foreground">{API_BASE_URL}</code>
             </div>
-          </div>
-          <div className="my-2 flex items-center space-x-1 font-semibold">
-            <span>Request Payload</span>
-            <i className="text-xs font-light">
-              (*Template level fields may vary)
-            </i>
-          </div>
-          <FieldList fields={PAYLOAD_FIELDS_MAP} />
-        </DocsSection>
-        <DocsSection title="Error Handling">
-          <p className="mb-2 text-muted-foreground">
-            The API uses conventional HTTP response codes to indicate the
-            success or failure of requests:
-          </p>
-          <FieldList fields={ERROR_CODES_MAP} />
-        </DocsSection>
+          </DocsSection>
+          <DocsSection title="Rate Limiting">
+            <p className="mb-2 text-muted-foreground">
+              All API endpoints are rate-limited to 100 requests per minute per
+              IP address. Rate limit information is included in the response
+              headers:
+            </p>
+            <FieldList fields={RATE_LIMITING_HEADERS} />
+          </DocsSection>
+          <DocsSection title="Endpoints">
+            <div className="rounded border bg-accent p-2 text-accent-foreground">
+              <div className="flex items-center gap-2">
+                <Badge size="lg" variant={"destructive"}>
+                  POST
+                </Badge>
+                <code>/v1/images</code>
+              </div>
+            </div>
+            <div className="my-2 flex items-center space-x-1 font-semibold">
+              <span>Request Payload</span>
+              <i className="text-xs font-light">
+                (*Template level fields may vary)
+              </i>
+            </div>
+            <FieldList fields={PAYLOAD_FIELDS_MAP} />
+          </DocsSection>
+          <DocsSection title="Error Handling">
+            <p className="mb-2 text-muted-foreground">
+              The API uses conventional HTTP response codes to indicate the
+              success or failure of requests:
+            </p>
+            <FieldList fields={ERROR_CODES_MAP} />
+          </DocsSection>
+        </div>
       </div>
-    </div>
+    </section>
   )
 }

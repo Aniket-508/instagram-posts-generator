@@ -53,7 +53,7 @@ export default function AuthForm({
   return (
     <form
       onSubmit={handleEmailPassword}
-      className="w-full max-w-sm overflow-hidden rounded-[calc(var(--radius)+.125rem)] border bg-muted shadow-md shadow-zinc-950/5 dark:[--color-muted:var(--color-zinc-900)]"
+      className="w-full max-w-sm overflow-hidden rounded-[calc(var(--radius)+.125rem)] border bg-muted shadow-md shadow-neutral-950/5 dark:[--color-muted:var(--color-neutral-900)]"
     >
       <div className="-m-px rounded-[calc(var(--radius)+.125rem)] border bg-card p-8 pb-6">
         <div className="text-center">

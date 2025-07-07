@@ -21,7 +21,7 @@ export default function GridLines() {
         style={{ "--grid-column": 4 } as React.CSSProperties}
       />
       <div
-        className="absolute right-5 h-full w-px bg-[linear-gradient(180deg,#232323,#232323_50%,transparent_0,transparent)] [background-size:2px_12px] [grid-column:var(--grid-column)] md:right-4"
+        className="absolute h-full w-px bg-[linear-gradient(180deg,#232323,#232323_50%,transparent_0,transparent)] [background-size:2px_12px] [grid-column:var(--grid-column)]"
         style={{ "--grid-column": 5 } as React.CSSProperties}
       />
     </div>
